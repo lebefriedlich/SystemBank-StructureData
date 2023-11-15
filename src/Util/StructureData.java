@@ -75,7 +75,9 @@ public class StructureData {
         }
     }
 
-    public static String[] binarySearch(ArrayList<String[]> list, String target) {
+    public static String[] binarySearchByAccountNumber(ArrayList<String[]> list, String target) {
+        bubbleSortByAccountNumber(list);
+        
         int left = 0;
         int right = list.size() - 1;
 
@@ -84,6 +86,32 @@ public class StructureData {
 
             // Bandingkan target dengan elemen pada indeks tengah
             String comparisonResult = list.get(mid)[0]; // Mengasumsikan indeks 0 adalah yang ingin dibandingkan
+
+            int compareResult = target.compareTo(comparisonResult);
+
+            if (compareResult == 0) {
+                return list.get(mid); // Mengembalikan array yang sesuai dengan target
+            } else if (compareResult < 0) {
+                right = mid - 1; // Cari di sebelah kiri
+            } else {
+                left = mid + 1; // Cari di sebelah kanan
+            }
+        }
+
+        return null; // Element tidak ditemukan
+    }
+    
+    public static String[] binarySearchByName(ArrayList<String[]> list, String target) {
+        bubbleSortByName(list);
+        
+        int left = 0;
+        int right = list.size() - 1;
+
+        while (left <= right) {
+            int mid = left + (right - left) / 2;
+
+            // Bandingkan target dengan elemen pada indeks tengah
+            String comparisonResult = list.get(mid)[1]; // Mengasumsikan indeks 0 adalah yang ingin dibandingkan
 
             int compareResult = target.compareTo(comparisonResult);
 

@@ -510,7 +510,16 @@ public class menu_admin extends javax.swing.JFrame {
                 tf_pencarian.requestFocus();
             } else {
                 try {
-                    String[] notification = SD.binarySearch(dataNasabah, tf_pencarian.getText());
+                    String[] notification = new String[8];
+                    if (isNumeric(tf_pencarian.getText())) {
+                        if (Long.parseLong(tf_pencarian.getText()) > 19210204000000L) {
+                            notification = SD.binarySearchByAccountNumber(dataNasabah, tf_pencarian.getText());
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Masukkan Nomor Rekening atau Nama", "Informasi", JOptionPane.INFORMATION_MESSAGE);
+                        }
+                    } else {
+                        notification = SD.binarySearchByName(dataNasabah, tf_pencarian.getText());
+                    }
                     tabMode = (DefaultTableModel) tab_data.getModel();
                     tab_data.setModel(tabMode);
                     tabMode.setRowCount(0);
@@ -687,4 +696,13 @@ public class menu_admin extends javax.swing.JFrame {
     private javax.swing.JTextField tf_status;
     private javax.swing.JTextField tf_username;
     // End of variables declaration//GEN-END:variables
+
+    private boolean isNumeric(String text) {
+        try {
+            Double.parseDouble(text);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
 }
