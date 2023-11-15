@@ -52,8 +52,8 @@ public class menu_admin extends javax.swing.JFrame {
             tab_data.getColumnModel().getColumn(3).setPreferredWidth(95);
             tab_data.getColumnModel().getColumn(4).setPreferredWidth(95);
             tab_data.getColumnModel().getColumn(5).setPreferredWidth(220);
-            tab_data.getColumnModel().getColumn(6).setPreferredWidth(145);
-            tab_data.getColumnModel().getColumn(7).setPreferredWidth(80);
+            tab_data.getColumnModel().getColumn(6).setPreferredWidth(135);
+            tab_data.getColumnModel().getColumn(7).setPreferredWidth(70);
         } else {
             dispose();
             welcomeScreen ss = new welcomeScreen();
@@ -379,15 +379,24 @@ public class menu_admin extends javax.swing.JFrame {
 
     private void bt_registerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_registerActionPerformed
         notif = TC.register(tf_namaLengkap.getText(), tf_username.getText(), tf_password.getText(), tf_noTelp.getText(), tf_email.getText(), tf_saldo.getText(), "2");
-        JOptionPane.showMessageDialog(null, notif, "Informasi", JOptionPane.INFORMATION_MESSAGE);
-        reset();
+        if ("Daftar Berhasil".equals(notif)) {
+            JOptionPane.showMessageDialog(null, notif, "Informasi", JOptionPane.INFORMATION_MESSAGE);
+            reset();
+        } else{
+            JOptionPane.showMessageDialog(null, notif, "Informasi", JOptionPane.INFORMATION_MESSAGE);
+        }
+        tampil_datauser();
     }//GEN-LAST:event_bt_registerActionPerformed
 
     private void bt_editActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_editActionPerformed
         notif = AC.editData(tf_username.getText(), tf_password.getText(), tf_noTelp.getText(), tf_email.getText(), tf_namaLengkap.getText());
-        JOptionPane.showMessageDialog(null, notif, "Informasi", JOptionPane.INFORMATION_MESSAGE);
         tampil_datauser();
-        reset();
+        if ("Data Berhasil Dirubah".equals(notif)) {
+            JOptionPane.showMessageDialog(null, notif, "Informasi", JOptionPane.INFORMATION_MESSAGE);
+            reset();
+        } else{
+            JOptionPane.showMessageDialog(null, notif, "Informasi", JOptionPane.INFORMATION_MESSAGE);
+        };
     }//GEN-LAST:event_bt_editActionPerformed
 
     private void bt_activeOrNonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_activeOrNonActionPerformed

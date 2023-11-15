@@ -20,10 +20,12 @@ public class TransactionController {
     final String PASSWORD_PATTERN = "^\\d{6}$";
     final String SALDO_PATTERN = "^\\d+$";
     final String NOTELP_PATTERN = "^(\\d{12}|\\d{13})$";
+    final String EMAIL_REGEX = "^[a-z0-9]+@gmail\\.com$";
     final Pattern patternUsername = Pattern.compile(USERNAME_PATTERN);
     final Pattern patternPassword = Pattern.compile(PASSWORD_PATTERN);
     final Pattern patternSaldo = Pattern.compile(SALDO_PATTERN);
     final Pattern patternNoTelp = Pattern.compile(NOTELP_PATTERN);
+    final Pattern patternEmail = Pattern.compile(EMAIL_REGEX);
     String notif;
 
     public String checkLogin(String username, String password) {
@@ -42,10 +44,12 @@ public class TransactionController {
     }
 
     public String register(String namaLengkap, String username, String password, String noTelpon, String email, String saldo, String role) {
+        String saldoReplace = saldo.replace(".", "");
         Matcher matcherUsername = patternUsername.matcher(username);
         Matcher matcherPassword = patternPassword.matcher(password);
-        Matcher matcherSaldo = patternSaldo.matcher(saldo);
+        Matcher matcherSaldo = patternSaldo.matcher(saldoReplace);
         Matcher matcherNoTelp = patternNoTelp.matcher(noTelpon);
+        Matcher matcherEmail = patternEmail.matcher(email);
 
         if (namaLengkap.isEmpty()) {
             notif = "Maaf, Nama lengkap belum diisi !";
@@ -59,6 +63,8 @@ public class TransactionController {
             notif = "Maaf, No. Telepon harus memiliki 12 atau 13 angka !";
         } else if (email.isEmpty()) {
             notif = "Maaf, Email belum diisi !";
+        } else if (!matcherEmail.matches()) {
+            notif = "Maaf, Input email tidak valid!";
         } else if (!matcherSaldo.matches()) {
             notif = "Maaf, Input saldo harus angka!";
         } else {
@@ -67,9 +73,9 @@ public class TransactionController {
             TM.setPassword(password);
             TM.setNoTelpon(noTelpon);
             TM.setEmail(email);
-            TM.setSaldo(Double.parseDouble(saldo));
+            TM.setSaldo(Double.parseDouble(saldoReplace));
             TM.setRole(role);
-            if (TS.register(namaLengkap, username, password, noTelpon, email, Double.parseDouble(saldo), role)) {
+            if (TS.register(namaLengkap, username, password, noTelpon, email, Double.parseDouble(saldoReplace), role)) {
                 notif = "Daftar Berhasil";
             } else {
                 notif = "Daftar Gagal";

@@ -4,7 +4,10 @@
  */
 package controller;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import service.AdminService;
+import service.TransactionService;
 
 /**
  *
@@ -13,7 +16,16 @@ import service.AdminService;
 public class AdminController {
     AdminService AS;
     String notif;
-
+    TransactionService TS = new TransactionService();
+    final String USERNAME_PATTERN = "^[a-z0-9]{6}$";
+    final String PASSWORD_PATTERN = "^\\d{6}$";
+    final String NOTELP_PATTERN = "^(\\d{12}|\\d{13})$";
+    final String EMAIL_REGEX = "^[a-z0-9]+@gmail\\.com$";
+    final Pattern patternUsername = Pattern.compile(USERNAME_PATTERN);
+    final Pattern patternPassword = Pattern.compile(PASSWORD_PATTERN);
+    final Pattern patternNoTelp = Pattern.compile(NOTELP_PATTERN);
+    final Pattern patternEmail = Pattern.compile(EMAIL_REGEX);
+    
     public AdminController(AdminService AS) {
         this.AS = AS;
     }
@@ -29,9 +41,20 @@ public class AdminController {
     }
     
     public String editData(String username, String password, String noTelpon, String email, String namaLengkap){
+        Matcher matcherUsername = patternUsername.matcher(username);
+        Matcher matcherPassword = patternPassword.matcher(password);
+        Matcher matcherNoTelp = patternNoTelp.matcher(noTelpon);
+        Matcher matcherEmail = patternEmail.matcher(email);
+        
         if (namaLengkap.isEmpty()) {
             notif = "Maaf, Nama lengkap belum diisi !";
-        }  else if (username.isEmpty()) {
+        } else if (!matcherUsername.matches()) {
+            notif = "Maaf, Username harus memiliki 6 karakter !";
+        } else if (!matcherPassword.matches()) {
+            notif = "Maaf, Password harus memiliki 6 karakter !";
+        } else if (!matcherNoTelp.matches()) {
+            notif = "Maaf, No. Telepon harus memiliki 12 atau 13 angka !";
+        } else if (username.isEmpty()) {
             notif = "Maaf, Username belum diisi!";
         } else if (password.isEmpty()) {
             notif = "Maaf, Password belum diisi!";
@@ -39,8 +62,12 @@ public class AdminController {
             notif = "Maaf, Nomer Telepon belum diisi!";
         } else if (email.isEmpty()) {
             notif = "Maaf, Email belum diisi !";
+        } else if (!matcherEmail.matches()) {
+            notif = "Maaf, Input email tidak valid!";
         } else if (AS.editData(username, password, noTelpon, email, namaLengkap)) {
             notif = "Data Berhasil Dirubah"; 
+        } else if (!TS.checkData(username)) {
+            notif = "Maaf, username ini sudah terdaftar";
         } else {
             notif = "Data Gagal Dirubah"; 
         }
