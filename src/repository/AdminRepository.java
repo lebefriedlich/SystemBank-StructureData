@@ -111,7 +111,7 @@ public class AdminRepository {
     }
 
     public boolean activeOrNon(String namaLengkap, String status) {
-        query = "UPDATE user_bank SET status = ? WHERE nama_lengkap = ?";
+        query = "UPDATE user_bank SET status = ? WHERE username = ?";
         try {
             psmt = connection.prepareStatement(query);
             psmt.setString(1, status);

@@ -24,12 +24,12 @@ import model.TransactionModel;
 public class menu_admin extends javax.swing.JFrame {
 
     TransactionModel TM = new TransactionModel();
+    TransactionController TC = new TransactionController();
     AdminModel AM = new AdminModel();
     AdminService AS = new AdminService();
     AdminController AC = new AdminController(AS);
     StructureData SD = new StructureData();
 
-    TransactionController TC = new TransactionController();
     private DefaultTableModel tabMode;
     private String notif, notif1;
     NumberFormat formatRp = NumberFormat.getCurrencyInstance(new Locale("in", "ID"));
@@ -88,6 +88,9 @@ public class menu_admin extends javax.swing.JFrame {
         tf_saldo.setText("");
         tf_nominal.setText("");
         tf_status.setText("");
+        tf_rek1.setText("");
+        tf_rekTuj.setText("");
+        tf_nom.setText("");
         lab_aktifitas.setText("");
         tabMode = new DefaultTableModel();
         tab_aktifitas.setModel(tabMode);
@@ -352,7 +355,7 @@ public class menu_admin extends javax.swing.JFrame {
         jLabel22.setText("No. Rekening");
         getContentPane().add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, -1, -1));
 
-        cb_sorting.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-", "Nomor Rekening", "Nama" }));
+        cb_sorting.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Default", "Nomor Rekening", "Nama" }));
         cb_sorting.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cb_sortingActionPerformed(evt);
@@ -382,7 +385,7 @@ public class menu_admin extends javax.swing.JFrame {
         if ("Daftar Berhasil".equals(notif)) {
             JOptionPane.showMessageDialog(null, notif, "Informasi", JOptionPane.INFORMATION_MESSAGE);
             reset();
-        } else{
+        } else {
             JOptionPane.showMessageDialog(null, notif, "Informasi", JOptionPane.INFORMATION_MESSAGE);
         }
         tampil_datauser();
@@ -394,7 +397,7 @@ public class menu_admin extends javax.swing.JFrame {
         if ("Data Berhasil Dirubah".equals(notif)) {
             JOptionPane.showMessageDialog(null, notif, "Informasi", JOptionPane.INFORMATION_MESSAGE);
             reset();
-        } else{
+        } else {
             JOptionPane.showMessageDialog(null, notif, "Informasi", JOptionPane.INFORMATION_MESSAGE);
         };
     }//GEN-LAST:event_bt_editActionPerformed
@@ -408,12 +411,12 @@ public class menu_admin extends javax.swing.JFrame {
         }
         if (pilihan == JOptionPane.YES_OPTION) {
             if (tf_status.getText().equals("Active")) {
-                notif = AC.activeOrNon(tf_namaLengkap.getText(), "Non Active");
+                notif = AC.activeOrNon(tf_username.getText(), "Non Active");
                 JOptionPane.showMessageDialog(null, notif, "Informasi", JOptionPane.INFORMATION_MESSAGE);
                 tampil_datauser();
                 reset();
             } else {
-                notif = AC.activeOrNon(tf_namaLengkap.getText(), "Active");
+                notif = AC.activeOrNon(tf_username.getText(), "Active");
                 JOptionPane.showMessageDialog(null, notif, "Informasi", JOptionPane.INFORMATION_MESSAGE);
                 tampil_datauser();
                 reset();
@@ -484,7 +487,7 @@ public class menu_admin extends javax.swing.JFrame {
     private void bt_setTunActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_setTunActionPerformed
         String nom = tf_nominal.getText().replace("Rp", "").replace(".", "").replace(",00", "");
         notif = TC.plusSaldo(tf_noRek.getText(), nom, "Setor Tunai", "Berhasil");
-        JOptionPane.showMessageDialog(null, "Transfer Berhasil", "Informasi", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(null, notif, "Informasi", JOptionPane.INFORMATION_MESSAGE);
         tampil_datauser();
         reset();
     }//GEN-LAST:event_bt_setTunActionPerformed
@@ -494,18 +497,15 @@ public class menu_admin extends javax.swing.JFrame {
         String saldo = null;
         for (String[] rowData : dataNasabah) {
             if (rowData[0].equals(tf_rek1.getText())) {
-                saldo = rowData[rowData.length - 2];
+                saldo = rowData[rowData.length - 2].replace("Rp", "").replace(".", "").replace(",00", "");
                 break;
             }
         }
-        String saldo1 = saldo.replace("Rp", "").replace(".", "").replace(",00", "");
-        if (Integer.parseInt(saldo1) > Integer.parseInt(nom)) {
-            notif = TC.minusSaldo(tf_rek1.getText(), nom, "Transfer Keluar", ("ke " + tf_rekTuj.getText()));
+        if (Integer.parseInt(saldo) > Integer.parseInt(nom)) {
+            notif = TC.minusSaldo(tf_rek1.getText(), nom, "Transfer Keluar", ("ke " + tf_rekTuj.getText())).replace("Keluar", "");
             notif1 = TC.plusSaldo(tf_rekTuj.getText(), nom, "Transfer Masuk", "dari " + tf_rek1.getText());
             JOptionPane.showMessageDialog(null, notif, "Informasi", JOptionPane.INFORMATION_MESSAGE);
-            tf_rek1.setText("");
-            tf_rekTuj.setText("");
-            tf_nom.setText("");
+            reset();
             tampil_datauser();
         } else {
             JOptionPane.showMessageDialog(null, "Saldo Nasabah Tidak Mencukupi", "Informasi", JOptionPane.INFORMATION_MESSAGE);
@@ -596,12 +596,8 @@ public class menu_admin extends javax.swing.JFrame {
             tab_data.setRowHeight(35);
             tabMode.setRowCount(0);
             dataNasabah = AM.getDataNasabah();
-            try {
-                for (String[] rowData : dataNasabah) {
-                    tabMode.addRow(rowData);
-                }
-            } catch (Exception e) {
-                System.out.println(e);
+            for (String[] rowData : dataNasabah) {
+                tabMode.addRow(rowData);
             }
         } else if ("Nama".equals(selectedOption)) {
             SD.bubbleSortByName(dataNasabah);
@@ -610,12 +606,8 @@ public class menu_admin extends javax.swing.JFrame {
             tab_data.setRowHeight(35);
             tabMode.setRowCount(0);
             dataNasabah = AM.getDataNasabah();
-            try {
-                for (String[] rowData : dataNasabah) {
-                    tabMode.addRow(rowData);
-                }
-            } catch (Exception e) {
-                System.out.println(e);
+            for (String[] rowData : dataNasabah) {
+                tabMode.addRow(rowData);
             }
         }
     }//GEN-LAST:event_cb_sortingActionPerformed

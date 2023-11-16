@@ -31,11 +31,14 @@ public class TransactionController {
     public String checkLogin(String username, String password) {
         Matcher matcherUsername = patternUsername.matcher(username);
         Matcher matcherPassword = patternPassword.matcher(password);
+        boolean flag = TS.checkLogin(username, password);
         if (username.isEmpty()) {
             notif = "Maaf, Username belum diisi!";
         } else if (password.isEmpty()) {
             notif = "Maaf, Password belum diisi!";
-        } else if (matcherUsername.matches() && matcherPassword.matches() && TS.checkLogin(username, password)) {
+        } else if (TM.getStatusLogin().equals("Non Active")){
+            notif = "Akun anda diblokir";
+        } else if (matcherUsername.matches() && matcherPassword.matches() && flag) {
             notif = null;
         } else {
             notif = "Username atau password yang anda \nmasukkan salah. Silahkan coba kembali";
