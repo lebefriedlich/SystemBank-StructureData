@@ -52,4 +52,14 @@ public class AdminService {
             return false;
         }
     }
+    
+    public boolean getStatus(String namaLengkap){
+        try {
+            AR.getStatus(namaLengkap);
+            return true;
+        } catch (Exception e) {
+            System.out.println(e.toString());
+            return false;
+        }
+    }
 }

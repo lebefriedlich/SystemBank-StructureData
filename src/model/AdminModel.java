@@ -13,7 +13,15 @@ import java.util.ArrayList;
 public class AdminModel {
     private static ArrayList<String[]> dataNasabah;
     private static ArrayList<String[]> dataAdmin;
-    private static String statusLogin;
+    private static String statusLogin, statusNasabah;
+
+    public static String getStatusNasabah() {
+        return statusNasabah;
+    }
+
+    public static void setStatusNasabah(String statusNasabah) {
+        AdminModel.statusNasabah = statusNasabah;
+    }
 
     public static String getStatusLogin() {
         return statusLogin;

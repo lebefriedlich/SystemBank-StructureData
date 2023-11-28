@@ -43,6 +43,7 @@ public class menu_admin extends javax.swing.JFrame {
             initComponents();
             tampil_datauser();
             tf_noRek.setEditable(false);
+            tf_status.setEditable(false);
             tab_data.setEnabled(false);
             tab_aktifitas.setEnabled(false);
             tab_data.setAutoResizeMode(tab_data.AUTO_RESIZE_OFF);
@@ -382,24 +383,20 @@ public class menu_admin extends javax.swing.JFrame {
 
     private void bt_registerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_registerActionPerformed
         notif = TC.register(tf_namaLengkap.getText(), tf_username.getText(), tf_password.getText(), tf_noTelp.getText(), tf_email.getText(), tf_saldo.getText(), "2");
-        if ("Daftar Berhasil".equals(notif)) {
-            JOptionPane.showMessageDialog(null, notif, "Informasi", JOptionPane.INFORMATION_MESSAGE);
-            reset();
-        } else {
-            JOptionPane.showMessageDialog(null, notif, "Informasi", JOptionPane.INFORMATION_MESSAGE);
-        }
+        JOptionPane.showMessageDialog(null, notif, "Informasi", JOptionPane.INFORMATION_MESSAGE);
         tampil_datauser();
+        if ("Daftar Berhasil".equals(notif)) {
+            reset();
+        }
     }//GEN-LAST:event_bt_registerActionPerformed
 
     private void bt_editActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_editActionPerformed
         notif = AC.editData(tf_username.getText(), tf_password.getText(), tf_noTelp.getText(), tf_email.getText(), tf_namaLengkap.getText());
+        JOptionPane.showMessageDialog(null, notif, "Informasi", JOptionPane.INFORMATION_MESSAGE);
         tampil_datauser();
         if ("Data Berhasil Dirubah".equals(notif)) {
-            JOptionPane.showMessageDialog(null, notif, "Informasi", JOptionPane.INFORMATION_MESSAGE);
             reset();
-        } else {
-            JOptionPane.showMessageDialog(null, notif, "Informasi", JOptionPane.INFORMATION_MESSAGE);
-        };
+        }
     }//GEN-LAST:event_bt_editActionPerformed
 
     private void bt_activeOrNonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_activeOrNonActionPerformed
@@ -412,15 +409,12 @@ public class menu_admin extends javax.swing.JFrame {
         if (pilihan == JOptionPane.YES_OPTION) {
             if (tf_status.getText().equals("Active")) {
                 notif = AC.activeOrNon(tf_username.getText(), "Non Active");
-                JOptionPane.showMessageDialog(null, notif, "Informasi", JOptionPane.INFORMATION_MESSAGE);
-                tampil_datauser();
-                reset();
             } else {
                 notif = AC.activeOrNon(tf_username.getText(), "Active");
-                JOptionPane.showMessageDialog(null, notif, "Informasi", JOptionPane.INFORMATION_MESSAGE);
-                tampil_datauser();
-                reset();
             }
+            JOptionPane.showMessageDialog(null, notif, "Informasi", JOptionPane.INFORMATION_MESSAGE);
+            tampil_datauser();
+            reset();
         }
     }//GEN-LAST:event_bt_activeOrNonActionPerformed
 
@@ -519,23 +513,23 @@ public class menu_admin extends javax.swing.JFrame {
                 tf_pencarian.requestFocus();
             } else {
                 try {
-                    String[] notification = new String[8];
+                    String[] data = new String[8];
                     if (isNumeric(tf_pencarian.getText())) {
                         if (Long.parseLong(tf_pencarian.getText()) > 19210204000000L) {
-                            notification = SD.binarySearchByAccountNumber(dataNasabah, tf_pencarian.getText());
+                            data = SD.binarySearchByAccountNumber(dataNasabah, tf_pencarian.getText());
                         } else {
                             JOptionPane.showMessageDialog(null, "Masukkan Nomor Rekening atau Nama", "Informasi", JOptionPane.INFORMATION_MESSAGE);
                         }
                     } else {
-                        notification = SD.binarySearchByName(dataNasabah, tf_pencarian.getText());
+                        data = SD.binarySearchByName(dataNasabah, tf_pencarian.getText());
                     }
                     tabMode = (DefaultTableModel) tab_data.getModel();
                     tab_data.setModel(tabMode);
                     tabMode.setRowCount(0);
-                    if (notification == null) {
+                    if (data == null) {
                         JOptionPane.showMessageDialog(null, "Data Nasabah Tidak Ditemukan", "Informasi", JOptionPane.INFORMATION_MESSAGE);
                     } else {
-                        tabMode.addRow(notification);
+                        tabMode.addRow(data);
                     }
                 } catch (Exception e) {
                     System.out.println(e);
@@ -587,7 +581,7 @@ public class menu_admin extends javax.swing.JFrame {
 
     private void cb_sortingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cb_sortingActionPerformed
         String selectedOption = (String) cb_sorting.getSelectedItem();
-        if ("-".equals(selectedOption)) {
+        if ("Default".equals(selectedOption)) {
             tampil_datauser();
         } else if ("Nomor Rekening".equals(selectedOption)) {
             SD.bubbleSortByAccountNumber(dataNasabah);

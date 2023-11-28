@@ -124,4 +124,21 @@ public class AdminRepository {
             return false;
         }
     }
+    
+    public boolean getStatus(String namaLengkap) {
+        try {
+            query = "SELECT status from user_bank WHERE nama_lengkap = ?";
+            psmt = connection.prepareStatement(query);
+            psmt.setString(1, namaLengkap);
+            rs = psmt.executeQuery();
+            if (rs.next()) {
+                AM.setStatusNasabah(rs.getString("status"));
+                return true;
+            } else {
+                return false;
+            }
+        } catch (SQLException e) {
+            return false;
+        }
+    }
 }

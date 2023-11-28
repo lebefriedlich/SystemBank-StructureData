@@ -117,7 +117,7 @@ public class TransactionController {
         Matcher matcherSaldo = patternSaldo.matcher(jumlahTransaksi);
 
         if (noRek.isEmpty()) {
-            notif = "Maaf, Nomer Rekening belum diisi !";
+            notif = "Maaf, Nomer Rekening belum diisi!";
         } else if (!matcherSaldo.matches()) {
             notif = "Maaf, Input saldo harus angka!";
         } else {

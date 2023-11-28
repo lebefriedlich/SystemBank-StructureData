@@ -255,14 +255,18 @@ public class daftar extends javax.swing.JFrame {
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             notif = TC.register(tf_namaLengkap.getText(), tf_username.getText(), pf_password.getText(), tf_noTelp.getText(), tf_email.getText(), tf_saldo.getText(), "2");
             JOptionPane.showMessageDialog(null, notif, "Informasi", JOptionPane.INFORMATION_MESSAGE);
-            reset();
+            if ("Data Berhasil Dirubah".equals(notif)) {
+                reset();
+            }
         }
     }//GEN-LAST:event_tf_saldoKeyPressed
 
     private void btn_signUpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_signUpActionPerformed
         notif = TC.register(tf_namaLengkap.getText(), tf_username.getText(), pf_password.getText(), tf_noTelp.getText(), tf_email.getText(), tf_saldo.getText(), "2");
         JOptionPane.showMessageDialog(null, notif, "Informasi", JOptionPane.INFORMATION_MESSAGE);
-        reset();
+        if ("Data Berhasil Dirubah".equals(notif)) {
+            reset();
+        }
     }//GEN-LAST:event_btn_signUpActionPerformed
 
     /**

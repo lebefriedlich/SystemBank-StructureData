@@ -91,4 +91,15 @@ public class AdminController {
         return notif;
     }
     
+    public String getStatus(String namaLengkap){
+        if (namaLengkap.isEmpty()) {
+            notif = "Nama Lengkap Kosong";
+        } else if (AS.getStatus(namaLengkap)) {
+            notif = "Status Ditemukan";
+        } else {
+            notif = "Status Tidak ditemukan";
+        }
+        return notif;
+    }
+    
 }
