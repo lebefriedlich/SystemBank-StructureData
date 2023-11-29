@@ -39,16 +39,26 @@ public class AdminPage extends javax.swing.JFrame {
      * Creates new form LoginPage
      */
     public AdminPage() {
-        initComponents();
-        tampil_datauser();
-        tab_data.setAutoResizeMode(tab_data.AUTO_RESIZE_OFF);
-        tab_data.getColumnModel().getColumn(0).setPreferredWidth(100);
-        tab_data.getColumnModel().getColumn(1).setPreferredWidth(245);
-        tab_data.getColumnModel().getColumn(2).setPreferredWidth(75);
-        tab_data.getColumnModel().getColumn(3).setPreferredWidth(95);
-        tab_data.getColumnModel().getColumn(4).setPreferredWidth(95);
-        tab_data.getColumnModel().getColumn(5).setPreferredWidth(200);
-        tab_data.getColumnModel().getColumn(6).setPreferredWidth(115);
+        if ("Active".equals(TM.getStatusLogin())) {
+            initComponents();
+            tampil_datauser();
+            tf_noRek.setEditable(false);
+            tf_status.setEditable(false);
+            tab_data.setEnabled(false);
+            tab_aktifitas.setEnabled(false);
+            tab_data.setAutoResizeMode(tab_data.AUTO_RESIZE_OFF);
+            tab_data.getColumnModel().getColumn(0).setPreferredWidth(100);
+            tab_data.getColumnModel().getColumn(1).setPreferredWidth(245);
+            tab_data.getColumnModel().getColumn(2).setPreferredWidth(75);
+            tab_data.getColumnModel().getColumn(3).setPreferredWidth(95);
+            tab_data.getColumnModel().getColumn(4).setPreferredWidth(95);
+            tab_data.getColumnModel().getColumn(5).setPreferredWidth(200);
+            tab_data.getColumnModel().getColumn(6).setPreferredWidth(115);
+        } else {
+            dispose();
+            LoginPage LP = new LoginPage();
+            LP.setVisible(true);
+        }
     }
 
     public void tampil_datauser() {
@@ -67,7 +77,7 @@ public class AdminPage extends javax.swing.JFrame {
             System.out.println(e);
         }
     }
-    
+
     public void reset() {
         tf_noRek.setText("");
         tf_namaLengkap.setText("");
@@ -121,6 +131,7 @@ public class AdminPage extends javax.swing.JFrame {
         cb_sorting = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         tab_aktifitas = new javax.swing.JTable();
+        lbl_exit = new javax.swing.JLabel();
         lbl_background = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -207,7 +218,7 @@ public class AdminPage extends javax.swing.JFrame {
             }
         });
         getContentPane().add(bt_tampilAktifitas, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 370, 120, -1));
-        getContentPane().add(tf_nominal, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 440, 180, -1));
+        getContentPane().add(tf_nominal, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 440, 180, 23));
 
         bt_tarTun.setBackground(new java.awt.Color(171, 237, 216));
         bt_tarTun.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -230,15 +241,15 @@ public class AdminPage extends javax.swing.JFrame {
             }
         });
         getContentPane().add(bt_setTun, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 470, 110, -1));
-        getContentPane().add(tf_rek1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 540, 180, -1));
+        getContentPane().add(tf_rek1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 540, 180, 23));
 
         tf_rekTuj.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tf_rekTujActionPerformed(evt);
             }
         });
-        getContentPane().add(tf_rekTuj, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 570, 180, -1));
-        getContentPane().add(tf_nom, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 600, 180, -1));
+        getContentPane().add(tf_rekTuj, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 570, 180, 23));
+        getContentPane().add(tf_nom, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 600, 180, 23));
 
         bt_transfer.setBackground(new java.awt.Color(171, 237, 216));
         bt_transfer.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -277,6 +288,13 @@ public class AdminPage extends javax.swing.JFrame {
         jScrollPane1.setViewportView(tab_aktifitas);
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 440, 950, 210));
+
+        lbl_exit.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lbl_exitMouseClicked(evt);
+            }
+        });
+        getContentPane().add(lbl_exit, new org.netbeans.lib.awtextra.AbsoluteConstraints(1280, 30, 80, 40));
 
         lbl_background.setBackground(new java.awt.Color(65, 163, 184));
         lbl_background.setIcon(new javax.swing.ImageIcon("C:\\Users\\HP\\OneDrive\\Documents\\SystemBank-StructureData\\images\\background\\Admin Page.png")); // NOI18N
@@ -501,6 +519,16 @@ public class AdminPage extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_cb_sortingActionPerformed
 
+    private void lbl_exitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_exitMouseClicked
+        int pilihan = JOptionPane.showConfirmDialog(null, "Apakah anda ingin keluar?", "Keluar", JOptionPane.YES_NO_OPTION);
+        if (pilihan == JOptionPane.YES_OPTION) {
+            dispose();
+            LoginPage LP = new LoginPage();
+            LP.setVisible(true);
+        }
+        TM.setStatusLogin(null);
+    }//GEN-LAST:event_lbl_exitMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -550,6 +578,7 @@ public class AdminPage extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lbl_background;
+    private javax.swing.JLabel lbl_exit;
     private javax.swing.JTable tab_aktifitas;
     private javax.swing.JTable tab_data;
     private javax.swing.JTextField tf_email;
@@ -566,7 +595,7 @@ public class AdminPage extends javax.swing.JFrame {
     private javax.swing.JTextField tf_status;
     private javax.swing.JTextField tf_username;
     // End of variables declaration//GEN-END:variables
-    
+
     private boolean isNumeric(String text) {
         try {
             Double.parseDouble(text);
@@ -576,4 +605,3 @@ public class AdminPage extends javax.swing.JFrame {
         }
     }
 }
-

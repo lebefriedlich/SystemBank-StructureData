@@ -14,17 +14,17 @@ import model.TransactionModel;
  * @author HP
  */
 public class LoginPage extends javax.swing.JFrame {
-    
+
     TransactionController TC = new TransactionController();
     TransactionModel TM = new TransactionModel();
     String notif;
-    
+
     /**
      * Creates new form LoginPage
      */
     public LoginPage() {
         initComponents();
-        
+
     }
 
     /**
@@ -47,11 +47,11 @@ public class LoginPage extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         tf_username.setBackground(new java.awt.Color(171, 237, 216));
-        tf_username.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(61, 132, 168)));
+        tf_username.setBorder(null);
         getContentPane().add(tf_username, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 300, 250, 27));
 
         pf_password.setBackground(new java.awt.Color(171, 237, 216));
-        pf_password.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(61, 132, 168)));
+        pf_password.setBorder(null);
         pf_password.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 pf_passwordKeyPressed(evt);
@@ -110,8 +110,8 @@ public class LoginPage extends javax.swing.JFrame {
             AP.setVisible(true);
         } else if ("2".equals(TM.getRole()) && "Active".equals(TM.getStatusLogin())) {
             dispose();
-            menu_nasabah mn = new menu_nasabah();
-            mn.setVisible(true);
+            NasabahPage_LandingPage NP = new NasabahPage_LandingPage();
+            NP.setVisible(true);
         }
     }//GEN-LAST:event_btn_loginActionPerformed
 
@@ -128,8 +128,8 @@ public class LoginPage extends javax.swing.JFrame {
                 AP.setVisible(true);
             } else if ("2".equals(TM.getRole()) && "Active".equals(TM.getStatusLogin())) {
                 dispose();
-                menu_nasabah mn = new menu_nasabah();
-                mn.setVisible(true);
+                NasabahPage_LandingPage NP = new NasabahPage_LandingPage();
+                NP.setVisible(true);
             }
         }
     }//GEN-LAST:event_pf_passwordKeyPressed
