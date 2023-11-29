@@ -152,7 +152,7 @@ public class AdminPage extends javax.swing.JFrame {
 
             },
             new String [] {
-                "No Rekening", "Nama Lengkap", "Username", "Password", "No. Telepon", "Email", "Saldo"
+                "No Rekening", "Full Name", "Username", "Password", "Phone Number", "Email", "Balance"
             }
         ));
         tab_data.addMouseListener(new java.awt.event.MouseAdapter() {

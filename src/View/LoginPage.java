@@ -47,11 +47,9 @@ public class LoginPage extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         tf_username.setBackground(new java.awt.Color(171, 237, 216));
-        tf_username.setBorder(null);
-        getContentPane().add(tf_username, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 300, 250, 27));
+        getContentPane().add(tf_username, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 298, 250, 27));
 
         pf_password.setBackground(new java.awt.Color(171, 237, 216));
-        pf_password.setBorder(null);
         pf_password.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 pf_passwordKeyPressed(evt);
@@ -115,6 +113,10 @@ public class LoginPage extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btn_loginActionPerformed
 
+    private void lbl_exitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_exitMouseClicked
+        System.exit(0);
+    }//GEN-LAST:event_lbl_exitMouseClicked
+
     private void pf_passwordKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_pf_passwordKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             notif = TC.checkLogin(tf_username.getText(), pf_password.getText());
@@ -133,10 +135,6 @@ public class LoginPage extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_pf_passwordKeyPressed
-
-    private void lbl_exitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_exitMouseClicked
-        System.exit(0);
-    }//GEN-LAST:event_lbl_exitMouseClicked
 
     /**
      * @param args the command line arguments

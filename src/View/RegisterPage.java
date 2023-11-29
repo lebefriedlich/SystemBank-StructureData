@@ -24,12 +24,12 @@ public class RegisterPage extends javax.swing.JFrame {
     }
     
     public void reset() {
-        tf_namaLengkap.setText("");
+        tf_fullName.setText("");
         tf_username.setText("");
         pf_password.setText("");
-        tf_noTelp.setText("");
+        tf_phoneNumber.setText("");
         tf_email.setText("");
-        tf_saldo.setText("");
+        tf_initialDeposit.setText("");
     }
 
     /**
@@ -41,12 +41,12 @@ public class RegisterPage extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        tf_namaLengkap = new javax.swing.JTextField();
+        tf_fullName = new javax.swing.JTextField();
         tf_username = new javax.swing.JTextField();
         pf_password = new javax.swing.JPasswordField();
-        tf_noTelp = new javax.swing.JTextField();
+        tf_phoneNumber = new javax.swing.JTextField();
         tf_email = new javax.swing.JTextField();
-        tf_saldo = new javax.swing.JTextField();
+        tf_initialDeposit = new javax.swing.JTextField();
         btn_register = new javax.swing.JButton();
         lbl_exit = new javax.swing.JLabel();
         lbl_login = new javax.swing.JLabel();
@@ -55,34 +55,28 @@ public class RegisterPage extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        tf_namaLengkap.setBackground(new java.awt.Color(171, 237, 216));
-        tf_namaLengkap.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(61, 132, 168)));
-        getContentPane().add(tf_namaLengkap, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 220, 250, 27));
+        tf_fullName.setBackground(new java.awt.Color(171, 237, 216));
+        getContentPane().add(tf_fullName, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 220, 250, 27));
 
         tf_username.setBackground(new java.awt.Color(171, 237, 216));
-        tf_username.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(61, 132, 168)));
         getContentPane().add(tf_username, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 270, 250, 27));
 
         pf_password.setBackground(new java.awt.Color(171, 237, 216));
-        pf_password.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(61, 132, 168)));
         getContentPane().add(pf_password, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 320, 250, 27));
 
-        tf_noTelp.setBackground(new java.awt.Color(171, 237, 216));
-        tf_noTelp.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(61, 132, 168)));
-        getContentPane().add(tf_noTelp, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 370, 250, 27));
+        tf_phoneNumber.setBackground(new java.awt.Color(171, 237, 216));
+        getContentPane().add(tf_phoneNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 370, 250, 27));
 
         tf_email.setBackground(new java.awt.Color(171, 237, 216));
-        tf_email.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(61, 132, 168)));
         getContentPane().add(tf_email, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 420, 250, 27));
 
-        tf_saldo.setBackground(new java.awt.Color(171, 237, 216));
-        tf_saldo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(61, 132, 168)));
-        tf_saldo.addKeyListener(new java.awt.event.KeyAdapter() {
+        tf_initialDeposit.setBackground(new java.awt.Color(171, 237, 216));
+        tf_initialDeposit.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                tf_saldoKeyPressed(evt);
+                tf_initialDepositKeyPressed(evt);
             }
         });
-        getContentPane().add(tf_saldo, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 470, 250, 27));
+        getContentPane().add(tf_initialDeposit, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 470, 250, 27));
 
         btn_register.setBackground(new java.awt.Color(70, 205, 207));
         btn_register.setFont(new java.awt.Font("Sakkal Majalla", 1, 24)); // NOI18N
@@ -123,26 +117,26 @@ public class RegisterPage extends javax.swing.JFrame {
     }//GEN-LAST:event_lbl_loginMouseClicked
 
     private void btn_registerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_registerActionPerformed
-        notif = TC.register(tf_namaLengkap.getText(), tf_username.getText(), pf_password.getText(), tf_noTelp.getText(), tf_email.getText(), tf_saldo.getText(), "2");
+        notif = TC.register(tf_fullName.getText(), tf_username.getText(), pf_password.getText(), tf_phoneNumber.getText(), tf_email.getText(), tf_initialDeposit.getText(), "2");
         JOptionPane.showMessageDialog(null, notif, "Informasi", JOptionPane.INFORMATION_MESSAGE);
         if ("Data Berhasil Dirubah".equals(notif)) {
             reset();
         }
     }//GEN-LAST:event_btn_registerActionPerformed
 
-    private void tf_saldoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tf_saldoKeyPressed
+    private void lbl_exitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_exitMouseClicked
+        System.exit(0);
+    }//GEN-LAST:event_lbl_exitMouseClicked
+
+    private void tf_initialDepositKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tf_initialDepositKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            notif = TC.register(tf_namaLengkap.getText(), tf_username.getText(), pf_password.getText(), tf_noTelp.getText(), tf_email.getText(), tf_saldo.getText(), "2");
+            notif = TC.register(tf_fullName.getText(), tf_username.getText(), pf_password.getText(), tf_phoneNumber.getText(), tf_email.getText(), tf_initialDeposit.getText(), "2");
             JOptionPane.showMessageDialog(null, notif, "Informasi", JOptionPane.INFORMATION_MESSAGE);
             if ("Data Berhasil Dirubah".equals(notif)) {
                 reset();
             }
         }
-    }//GEN-LAST:event_tf_saldoKeyPressed
-
-    private void lbl_exitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_exitMouseClicked
-        System.exit(0);
-    }//GEN-LAST:event_lbl_exitMouseClicked
+    }//GEN-LAST:event_tf_initialDepositKeyPressed
 
     /**
      * @param args the command line arguments
@@ -186,9 +180,9 @@ public class RegisterPage extends javax.swing.JFrame {
     private javax.swing.JLabel lbl_login;
     private javax.swing.JPasswordField pf_password;
     private javax.swing.JTextField tf_email;
-    private javax.swing.JTextField tf_namaLengkap;
-    private javax.swing.JTextField tf_noTelp;
-    private javax.swing.JTextField tf_saldo;
+    private javax.swing.JTextField tf_fullName;
+    private javax.swing.JTextField tf_initialDeposit;
+    private javax.swing.JTextField tf_phoneNumber;
     private javax.swing.JTextField tf_username;
     // End of variables declaration//GEN-END:variables
 }

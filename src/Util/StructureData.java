@@ -57,7 +57,7 @@ public class StructureData {
                 String date1String = arr.get(j)[0];
                 String date2String = arr.get(j + 1)[0];
 
-                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                 try {
                     Date date1 = dateFormat.parse(date1String);
                     Date date2 = dateFormat.parse(date2String);
