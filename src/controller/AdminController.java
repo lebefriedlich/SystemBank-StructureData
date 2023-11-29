@@ -14,7 +14,7 @@ import service.TransactionService;
  * @author HP
  */
 public class AdminController {
-    AdminService AS;
+    AdminService AS = new AdminService();
     String notif;
     TransactionService TS = new TransactionService();
     final String USERNAME_PATTERN = "^[a-z0-9]{6}$";
@@ -25,11 +25,7 @@ public class AdminController {
     final Pattern patternPassword = Pattern.compile(PASSWORD_PATTERN);
     final Pattern patternNoTelp = Pattern.compile(NOTELP_PATTERN);
     final Pattern patternEmail = Pattern.compile(EMAIL_REGEX);
-    
-    public AdminController(AdminService AS) {
-        this.AS = AS;
-    }
-    
+   
     
     public String viewAllNasabah(){
         if (AS.viewAllNasabah()) {

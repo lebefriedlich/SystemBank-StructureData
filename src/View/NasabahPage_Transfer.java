@@ -5,6 +5,7 @@
 package view;
 
 import controller.AdminController;
+import controller.NasabahController;
 import controller.TransactionController;
 import java.text.NumberFormat;
 import java.util.ArrayList;
@@ -21,9 +22,7 @@ import service.AdminService;
 public class NasabahPage_Transfer extends javax.swing.JFrame {
     TransactionModel TM = new TransactionModel();
     TransactionController TC = new TransactionController();
-    AdminModel AM = new AdminModel();
-    AdminService AS = new AdminService();
-    AdminController AC = new AdminController(AS);
+    NasabahController NC = new NasabahController();
     private String notif, notif1;
     NumberFormat formatRp = NumberFormat.getCurrencyInstance(new Locale("in", "ID"));
     
@@ -117,17 +116,10 @@ public class NasabahPage_Transfer extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Maaf Tidak Bisa Transfer ke Rekening Sendiri");
             tf_nom.setEditable(false);
         } else {
-            String namaLengkap = null;
-            AC.viewAllNasabah();
-            ArrayList<String[]> dataNasabah = AM.getDataNasabah();
-            for (String[] rowData : dataNasabah) {
-                if (rowData[0].equals(tf_destinationAccount.getText())) {
-                    namaLengkap = rowData[1];
-                    break;
-                }
-            }
+            String namaLengkap = NC.getNamaLengkap(tf_destinationAccount.getText());
+            
             if (namaLengkap == null) {
-                JOptionPane.showMessageDialog(null, "Data Tidak Ditemukan");
+                JOptionPane.showMessageDialog(null, "Nomor Rekening tidak ditemukan");
                 tf_nom.setEditable(false);
                 tf_destinationAccount.requestFocus();
             } else {

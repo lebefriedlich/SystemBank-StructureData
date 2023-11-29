@@ -26,8 +26,7 @@ public class AdminPage extends javax.swing.JFrame {
     TransactionModel TM = new TransactionModel();
     TransactionController TC = new TransactionController();
     AdminModel AM = new AdminModel();
-    AdminService AS = new AdminService();
-    AdminController AC = new AdminController(AS);
+    AdminController AC = new AdminController();
     StructureData SD = new StructureData();
 
     private DefaultTableModel tabMode;

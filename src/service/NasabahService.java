@@ -4,10 +4,22 @@
  */
 package service;
 
+import repository.NasabahRepository;
+
 /**
  *
  * @author HP
  */
 public class NasabahService {
+    NasabahRepository NR = new NasabahRepository();
     
+    public boolean getNamaLengkap(String noRek){
+        try {
+            NR.getNamaLengkap(noRek);
+            return true;
+        } catch (Exception e) {
+            System.out.println(e.toString());
+            return false;
+        }
+    }
 }

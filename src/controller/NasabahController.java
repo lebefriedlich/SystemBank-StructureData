@@ -4,6 +4,9 @@
  */
 package controller;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import model.NasabahModel;
 import service.NasabahService;
 
 /**
@@ -11,10 +14,24 @@ import service.NasabahService;
  * @author HP
  */
 public class NasabahController {
-    NasabahService NS;
-
-    public NasabahController(NasabahService NS) {
-        this.NS = NS;
+    NasabahService NS = new NasabahService();
+    NasabahModel NM = new NasabahModel();
+    String notif;
+    final String NOREK_PATTERN = "^\\d{14}$";
+    final Pattern patternNoRek = Pattern.compile(NOREK_PATTERN);
+    
+    public String getNamaLengkap(String noRek){
+        Matcher matcherNoRek = patternNoRek.matcher(noRek);
+        if (!matcherNoRek.matches()) {
+            notif = "Nomor Rekening harus memiliki 14 angka";
+        } else if (NS.getNamaLengkap(noRek)){
+            notif = NM.getNamaLengkap();
+        } else {
+            notif = null;
+        }
+        return notif;
     }
+    
+    
     
 }
