@@ -36,8 +36,6 @@ public class TransactionController {
             notif = "Maaf, Username belum diisi!";
         } else if (password.isEmpty()) {
             notif = "Maaf, Password belum diisi!";
-        } else if (TM.getStatusLogin().equals("Non Active")){
-            notif = "Akun anda diblokir";
         } else if (matcherUsername.matches() && matcherPassword.matches() && flag) {
             notif = null;
         } else {
@@ -70,6 +68,8 @@ public class TransactionController {
             notif = "Maaf, Input email tidak valid!";
         } else if (!matcherSaldo.matches()) {
             notif = "Maaf, Input saldo harus angka!";
+        } else if (Double.parseDouble(saldoReplace) < 100000) {
+            notif = "Maaf, Minimal setoran awal Rp100.000";
         } else {
             TM.setNamaLengkap(namaLengkap);
             TM.setUsername(username);
@@ -94,6 +94,8 @@ public class TransactionController {
             notif = "Maaf, Nomer Rekening belum diisi !";
         } else if (!matcherSaldo.matches()) {
             notif = "Maaf, Input saldo harus angka!";
+        } else if (Double.parseDouble(jumlahTransaksi) < 10000) {
+            notif = "Maaf, Minimal " + jenisTransaksi.replace("Keluar", "") + " Rp10.000";
         } else {
             if (TS.minusSaldo(noRek, jumlahTransaksi, jenisTransaksi, keterangan)) {
                 notif = "Anda Berhasil " + jenisTransaksi.replace("Keluar", "");
@@ -111,6 +113,8 @@ public class TransactionController {
             notif = "Maaf, Nomer Rekening belum diisi!";
         } else if (!matcherSaldo.matches()) {
             notif = "Maaf, Input saldo harus angka!";
+        } else if (Double.parseDouble(jumlahTransaksi) < 10000) {
+            notif = "Maaf, Minimal " + jenisTransaksi.replace("Masuk", "") + " Rp10.000";
         } else {
             if (TS.plusSaldo(noRek, jumlahTransaksi, jenisTransaksi, keterangan)) {
                 notif = "Anda Berhasil " + jenisTransaksi;

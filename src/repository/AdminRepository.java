@@ -95,7 +95,7 @@ public class AdminRepository {
     }
 
     public boolean editData(String username, String password, String noTelepon, String email, String namaLengkap) {
-        query = "UPDATE user_bank SET username =?, password =?, no_hp =?, email =? WHERE nama_lengkap =?";
+        query = "UPDATE user_bank SET username =?, password =?, no_hp =?, email =? WHERE nama_lengkap = ? AND role_id = 2";
         try {
             psmt = connection.prepareStatement(query);
             psmt.setString(1, username);
@@ -224,11 +224,11 @@ public class AdminRepository {
         }
     }
 
-    public boolean getStatus(String namaLengkap) {
+    public boolean getStatus(String username) {
         try {
-            query = "SELECT status from user_bank WHERE nama_lengkap = ?";
+            query = "SELECT status from user_bank WHERE username = ?";
             psmt = connection.prepareStatement(query);
-            psmt.setString(1, namaLengkap);
+            psmt.setString(1, username);
             rs = psmt.executeQuery();
             if (rs.next()) {
                 AM.setStatusNasabah(rs.getString("status"));

@@ -45,6 +45,7 @@ public class AdminPage extends javax.swing.JFrame {
             tampil_transaksi();
             tf_noRek.setEditable(false);
             tf_status.setEditable(false);
+            tf_nom.setEditable(false);
             tab_data.setEnabled(false);
             tab_aktifitas.setEnabled(false);
         } else {
@@ -348,7 +349,7 @@ public class AdminPage extends javax.swing.JFrame {
             String noTelp = tab_data.getValueAt(row, 4).toString();
             String email = tab_data.getValueAt(row, 5).toString();
             String saldo = tab_data.getValueAt(row, 6).toString();
-            AC.getStatus(namaLengkap);
+            AC.getStatus(username);
             tf_noRek.setText(noRek);
             tf_namaLengkap.setText(namaLengkap);
             tf_username.setText(username);
@@ -366,12 +367,17 @@ public class AdminPage extends javax.swing.JFrame {
         notif = TC.register(tf_namaLengkap.getText(), tf_username.getText(), tf_password.getText(), tf_noTelp.getText(), tf_email.getText(), tf_saldo.getText(), "2");
         JOptionPane.showMessageDialog(null, notif, "Informasi", JOptionPane.INFORMATION_MESSAGE);
         tampil_datauser();
+        tampil_transaksi();
         if ("Daftar Berhasil".equals(notif)) {
             reset();
         }
     }//GEN-LAST:event_bt_registerActionPerformed
 
     private void bt_editActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_editActionPerformed
+        if (tf_noRek.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Data belum diisi", "Informasi", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
         notif = AC.editData(tf_username.getText(), tf_password.getText(), tf_noTelp.getText(), tf_email.getText(), tf_namaLengkap.getText());
         JOptionPane.showMessageDialog(null, notif, "Informasi", JOptionPane.INFORMATION_MESSAGE);
         tampil_datauser();
@@ -381,8 +387,11 @@ public class AdminPage extends javax.swing.JFrame {
     }//GEN-LAST:event_bt_editActionPerformed
 
     private void bt_activeOrNonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_activeOrNonActionPerformed
-        int pilihan;
-        if (tf_status.getText().equals("Active")) {
+        int pilihan = 0;
+        if (tf_noRek.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Data belum diisi", "Informasi", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }  else if (tf_status.getText().equals("Active")) {
             pilihan = JOptionPane.showConfirmDialog(null, "Apakah Data Nasabah Dinon-aktifkan?", "Informasi", JOptionPane.YES_NO_OPTION);
         } else {
             pilihan = JOptionPane.showConfirmDialog(null, "Apakah Data Nasabah Diaktifkan?", "Informasi", JOptionPane.YES_NO_OPTION);
@@ -405,6 +414,10 @@ public class AdminPage extends javax.swing.JFrame {
     }//GEN-LAST:event_bt_resetActionPerformed
 
     private void bt_tampilAktifitasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_tampilAktifitasActionPerformed
+        if (tf_username.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Data belum diisi", "Informasi", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }        
         tabMode = (DefaultTableModel) tab_aktifitas.getModel();
         tab_aktifitas.setModel(tabMode);
         tabMode.setRowCount(0);
@@ -421,6 +434,10 @@ public class AdminPage extends javax.swing.JFrame {
     }//GEN-LAST:event_bt_tampilAktifitasActionPerformed
 
     private void bt_tarTunActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_tarTunActionPerformed
+        if (tf_noRek.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Data belum diisi", "Informasi", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
         String saldo = tf_saldo.getText().replace("Rp", "").replace(".", "").replace(",00", "");
         String nom = tf_nominal.getText().replace("Rp", "").replace(".", "").replace(",00", "");
         if (Integer.parseInt(saldo) > Integer.parseInt(nom)) {
@@ -434,6 +451,10 @@ public class AdminPage extends javax.swing.JFrame {
     }//GEN-LAST:event_bt_tarTunActionPerformed
 
     private void bt_setTunActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_setTunActionPerformed
+        if (tf_noRek.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Data belum diisi", "Informasi", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
         String nom = tf_nominal.getText().replace("Rp", "").replace(".", "").replace(",00", "");
         notif = TC.plusSaldo(tf_noRek.getText(), nom, "Setor Tunai", "Berhasil");
         JOptionPane.showMessageDialog(null, notif, "Informasi", JOptionPane.INFORMATION_MESSAGE);
@@ -461,6 +482,7 @@ public class AdminPage extends javax.swing.JFrame {
                 tf_nom.setEditable(true);
                 int pilihan = JOptionPane.showConfirmDialog(null, "Apakah anda transfer ke atas nama\n" + namaLengkap, "Transfer", JOptionPane.YES_NO_OPTION);
                 if (pilihan == JOptionPane.YES_OPTION) {
+                    tf_nom.setEditable(true);
                     tf_nom.requestFocus();
                 } else {
                     tf_rekTuj.setText("");
@@ -470,6 +492,10 @@ public class AdminPage extends javax.swing.JFrame {
     }//GEN-LAST:event_tf_rekTujActionPerformed
 
     private void bt_transferActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_transferActionPerformed
+        if (tf_rek1.getText().isEmpty() && tf_rekTuj.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Data belum diisi", "Informasi", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
         String nom = tf_nom.getText().replace(".", "").replace(",00", "");
         String saldo = null;
         for (String[] rowData : dataNasabah) {
@@ -484,6 +510,7 @@ public class AdminPage extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, notif, "Informasi", JOptionPane.INFORMATION_MESSAGE);
             reset();
             tampil_datauser();
+            tf_nom.setEditable(false);
         } else {
             JOptionPane.showMessageDialog(null, "Saldo Nasabah Tidak Mencukupi", "Informasi", JOptionPane.INFORMATION_MESSAGE);
         }
@@ -562,6 +589,10 @@ public class AdminPage extends javax.swing.JFrame {
     }//GEN-LAST:event_lbl_exitMouseClicked
 
     private void bt_deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_deleteActionPerformed
+        if (tf_noRek.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Data belum diisi", "Informasi", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
         int pilihan = JOptionPane.showConfirmDialog(null, "Apakah Data Nasabah Dihapus?", "Keluar", JOptionPane.YES_NO_OPTION);
             if (pilihan == JOptionPane.YES_OPTION) {
                 try {

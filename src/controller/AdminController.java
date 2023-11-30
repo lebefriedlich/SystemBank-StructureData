@@ -116,10 +116,10 @@ public class AdminController {
         return notif;
     }
     
-    public String getStatus(String namaLengkap){
-        if (namaLengkap.isEmpty()) {
-            notif = "Nama Lengkap Kosong";
-        } else if (AS.getStatus(namaLengkap)) {
+    public String getStatus(String username){
+        if (username.isEmpty()) {
+            notif = "username Kosong";
+        } else if (AS.getStatus(username)) {
             notif = "Status Ditemukan";
         } else {
             notif = "Status Tidak ditemukan";

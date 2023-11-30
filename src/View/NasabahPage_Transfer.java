@@ -37,6 +37,7 @@ public class NasabahPage_Transfer extends javax.swing.JFrame {
     }
     
     public void display() {
+        tf_nom.setEditable(false);
         lbl_noRek.setText(TM.getNoRek());
         lbl_saldo.setText(formatRp.format(TM.getSaldo()));
     }
@@ -100,7 +101,6 @@ public class NasabahPage_Transfer extends javax.swing.JFrame {
         getContentPane().add(lbl_exit, new org.netbeans.lib.awtextra.AbsoluteConstraints(24, 24, 25, 25));
 
         lbl_background.setIcon(new javax.swing.ImageIcon("C:\\Users\\HP\\OneDrive\\Documents\\SystemBank-StructureData\\images\\background\\Nasabah Page - Transfer.png")); // NOI18N
-        lbl_background.setText("jLabel1");
         getContentPane().add(lbl_background, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, -1));
 
         pack();
@@ -122,9 +122,11 @@ public class NasabahPage_Transfer extends javax.swing.JFrame {
                 tf_nom.setEditable(true);
                 int pilihan = JOptionPane.showConfirmDialog(null, "Apakah anda transfer ke atas nama\n" + namaLengkap, "Trasnfer", JOptionPane.YES_NO_OPTION);
                 if (pilihan == JOptionPane.YES_OPTION) {
+                    tf_nom.setEditable(true);
                     tf_nom.requestFocus();
                 } else {
                     tf_destinationAccount.setText("");
+                    tf_nom.setEditable(false);
                 }
             }
         }

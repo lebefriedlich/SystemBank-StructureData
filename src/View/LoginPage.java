@@ -24,7 +24,6 @@ public class LoginPage extends javax.swing.JFrame {
      */
     public LoginPage() {
         initComponents();
-
     }
 
     /**
@@ -100,9 +99,9 @@ public class LoginPage extends javax.swing.JFrame {
         notif = TC.checkLogin(tf_username.getText(), pf_password.getText());
         if (notif != null) {
             JOptionPane.showMessageDialog(null, notif, "Informasi", JOptionPane.INFORMATION_MESSAGE);
-        }
-
-        if ("1".equals(TM.getRole()) && "Active".equals(TM.getStatusLogin())) {
+            tf_username.setText("");
+            pf_password.setText("");
+        } else if ("1".equals(TM.getRole()) && "Active".equals(TM.getStatusLogin())) {
             dispose();
             AdminPage AP = new AdminPage();
             AP.setVisible(true);
@@ -122,9 +121,9 @@ public class LoginPage extends javax.swing.JFrame {
             notif = TC.checkLogin(tf_username.getText(), pf_password.getText());
             if (notif != null) {
                 JOptionPane.showMessageDialog(null, notif, "Informasi", JOptionPane.INFORMATION_MESSAGE);
-            }
-
-            if ("1".equals(TM.getRole()) && "Active".equals(TM.getStatusLogin())) {
+                tf_username.setText("");
+                pf_password.setText("");
+            } else if ("1".equals(TM.getRole()) && "Active".equals(TM.getStatusLogin())) {
                 dispose();
                 AdminPage AP = new AdminPage();
                 AP.setVisible(true);

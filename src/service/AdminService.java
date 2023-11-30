@@ -73,9 +73,9 @@ public class AdminService {
         }
     }
     
-    public boolean getStatus(String namaLengkap){
+    public boolean getStatus(String username){
         try {
-            AR.getStatus(namaLengkap);
+            AR.getStatus(username);
             return true;
         } catch (Exception e) {
             System.out.println(e.toString());
