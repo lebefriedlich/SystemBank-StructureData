@@ -3,10 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/C:/Users/HP/OneDrive/Documents/SystemBank-StructureData/src/view/coba.java</file>
+            <file>file:/C:/Users/HP/OneDrive/Documents/SystemBank-StructureData/src/service/AdminService.java</file>
+            <file>file:/C:/Users/HP/OneDrive/Documents/SystemBank-StructureData/src/repository/AdminRepository.java</file>
             <file>file:/C:/Users/HP/OneDrive/Documents/SystemBank-StructureData/src/view/LoginPage.java</file>
+            <file>file:/C:/Users/HP/OneDrive/Documents/SystemBank-StructureData/src/controller/AdminController.java</file>
             <file>file:/C:/Users/HP/OneDrive/Documents/SystemBank-StructureData/src/view/AdminPage.java</file>
-            <file>file:/C:/Users/HP/OneDrive/Documents/SystemBank-StructureData/src/view/NasabahPage_Transfer.java</file>
-            <file>file:/C:/Users/HP/OneDrive/Documents/SystemBank-StructureData/src/repository/TransactionRepository.java</file>
+            <file>file:/C:/Users/HP/OneDrive/Documents/SystemBank-StructureData/src/controller/TransactionController.java</file>
         </group>
     </open-files>
 </project-private>

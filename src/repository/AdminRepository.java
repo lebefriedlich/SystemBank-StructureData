@@ -4,6 +4,7 @@
  */
 package repository;
 
+import Util.StructureData;
 import model.AdminModel;
 import java.sql.*;
 import java.util.*;
@@ -15,6 +16,7 @@ import java.util.*;
 public class AdminRepository {
 
     AdminModel AM = new AdminModel();
+    StructureData SD = new StructureData();
     private Connection connection;
     private PreparedStatement psmt;
     private Statement stat;
@@ -22,6 +24,7 @@ public class AdminRepository {
     private String query;
     ArrayList<String[]> dataNasabah = new ArrayList<>();
     ArrayList<String[]> dataAdmin = new ArrayList<>();
+    ArrayList<String[]> dataTransaction = new ArrayList<>();
 
     public AdminRepository() {
         try {
@@ -105,7 +108,28 @@ public class AdminRepository {
             viewAllNasabah();
             return true;
         } catch (SQLException e) {
-            System.out.println("Data Gagal Diubah" + e);
+            return false;
+        }
+    }
+
+    public boolean deleteNasabah(String noRekening) {
+        try {
+            query = "SELECT ID_nasabah from rekening WHERE no_rekening = ?";
+            psmt = connection.prepareStatement(query);
+            psmt.setString(1, noRekening);
+            rs = psmt.executeQuery();
+            if (rs.next()) {
+                String idNasabah = rs.getString("ID_nasabah");
+                query = "DELETE FROM user_bank WHERE user_bank.ID_nasabah = ?";
+                psmt = connection.prepareStatement(query);
+                psmt.setString(1, idNasabah);
+                psmt.executeUpdate();
+                psmt.close();
+                viewAllNasabah();
+                viewAllTransactionNasabah();
+            }
+            return true;
+        } catch (SQLException e) {
             return false;
         }
     }
@@ -124,7 +148,82 @@ public class AdminRepository {
             return false;
         }
     }
-    
+
+    public boolean viewAllTransactionNasabah() {
+        try {
+            query = "SELECT tt.Tanggal_Transaksi, r.no_rekening, ub.nama_lengkap, tt.Jenis_Transaksi, tt.Jumlah_Transaksi, tt.keterangan "
+                    + "FROM tarik_tunai tt JOIN rekening r ON tt.no_rekening = r.no_rekening "
+                    + "JOIN user_bank ub ON r.ID_nasabah = ub.ID_nasabah "
+                    + "UNION "
+                    + "SELECT st.Tanggal_Transaksi, st.no_rekening, ub.nama_lengkap, st.Jenis_Transaksi, st.Jumlah_Transaksi, st.keterangan "
+                    + "FROM setor_tunai st JOIN rekening r ON st.no_rekening = r.no_rekening "
+                    + "JOIN user_bank ub ON r.ID_nasabah = ub.ID_nasabah "
+                    + "UNION "
+                    + "SELECT tf.Tanggal_Transaksi, tf.no_rekening, ub.nama_lengkap, tf.Jenis_Transaksi, tf.Jumlah_Transaksi, tf.keterangan "
+                    + "FROM transfer tf JOIN rekening r ON tf.no_rekening = r.no_rekening "
+                    + "JOIN user_bank ub ON r.ID_nasabah = ub.ID_nasabah";
+            psmt = connection.prepareStatement(query);
+            rs = psmt.executeQuery();
+            dataTransaction.clear();
+            while (rs.next()) {
+                String[] row = new String[6];
+                row[0] = rs.getString("Tanggal_Transaksi");
+                row[1] = rs.getString("no_rekening");
+                row[2] = rs.getString("nama_lengkap");
+                row[3] = rs.getString("Jenis_Transaksi");
+                row[4] = rs.getString("Jumlah_Transaksi");
+                row[5] = rs.getString("keterangan");
+
+                dataTransaction.add(row);
+            }
+            SD.bubbleSortTransactionByDate(dataTransaction);
+            AM.setDataTransaction(dataTransaction);
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public boolean viewTransactionNasabah(String noRekening) {
+        try {
+            query = "SELECT tt.Tanggal_Transaksi, r.no_rekening, ub.nama_lengkap, tt.Jenis_Transaksi, tt.Jumlah_Transaksi, tt.keterangan "
+                    + "FROM tarik_tunai tt JOIN rekening r ON tt.no_rekening = r.no_rekening "
+                    + "JOIN user_bank ub ON r.ID_nasabah = ub.ID_nasabah WHERE tt.no_rekening = ?"
+                    + "UNION "
+                    + "SELECT st.Tanggal_Transaksi, st.no_rekening, ub.nama_lengkap, st.Jenis_Transaksi, st.Jumlah_Transaksi, st.keterangan "
+                    + "FROM setor_tunai st JOIN rekening r ON st.no_rekening = r.no_rekening "
+                    + "JOIN user_bank ub ON r.ID_nasabah = ub.ID_nasabah WHERE st.no_rekening = ?"
+                    + "UNION "
+                    + "SELECT tf.Tanggal_Transaksi, tf.no_rekening, ub.nama_lengkap, tf.Jenis_Transaksi, tf.Jumlah_Transaksi, tf.keterangan "
+                    + "FROM transfer tf JOIN rekening r ON tf.no_rekening = r.no_rekening "
+                    + "JOIN user_bank ub ON r.ID_nasabah = ub.ID_nasabah WHERE tf.no_rekening = ?";
+            psmt = connection.prepareStatement(query);
+            psmt.setString(1, noRekening);
+            psmt.setString(2, noRekening);
+            psmt.setString(3, noRekening);
+            rs = psmt.executeQuery();
+            dataTransaction.clear();
+            while (rs.next()) {
+                String[] row = new String[6];
+                row[0] = rs.getString("Tanggal_Transaksi");
+                row[1] = rs.getString("no_rekening");
+                row[2] = rs.getString("nama_lengkap");
+                row[3] = rs.getString("Jenis_Transaksi");
+                row[4] = rs.getString("Jumlah_Transaksi");
+                row[5] = rs.getString("keterangan");
+
+                dataTransaction.add(row);
+            }
+            SD.bubbleSortTransactionByDate(dataTransaction);
+            AM.setDataTransaction(dataTransaction);
+            return true;
+        } catch (Exception e) {
+            System.out.println(e);
+            return false;
+        }
+    }
+
     public boolean getStatus(String namaLengkap) {
         try {
             query = "SELECT status from user_bank WHERE nama_lengkap = ?";

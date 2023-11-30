@@ -11,17 +11,8 @@ import java.util.ArrayList;
  * @author HP
  */
 public class TransactionModel {
-    private static ArrayList<String[]> dataTransaction = new ArrayList<>();
     private static String namaLengkap, noRek, role, statusLogin, username, password, email, noTelpon;
     private static double saldo;
-
-    public static ArrayList<String[]> getDataTransaction() {
-        return dataTransaction;
-    }
-
-    public static void setDataTransaction(ArrayList<String[]> dataTransaction) {
-        TransactionModel.dataTransaction = dataTransaction;
-    }
 
     public static String getNamaLengkap() {
         return namaLengkap;

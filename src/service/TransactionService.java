@@ -56,16 +56,6 @@ public class TransactionService {
         }
     }
     
-    public boolean viewTransactionNasabah(String no_rekening){
-        try {
-            TR.viewTransactionNasabah(no_rekening);
-            return true;
-        } catch (Exception e) {
-            System.out.println(e.toString());
-            return false;
-        }
-    }
-    
     public boolean minusSaldo(String noRek, String jumlahTransaksi, String jenisTransaksi, String keterangan){
         try {
             int error = TR.minusSaldo(noRek, jumlahTransaksi, jenisTransaksi, keterangan);
@@ -104,11 +94,7 @@ public class TransactionService {
     
     public boolean setSaldoNew(String noRek){
         try {
-            if (TR.setSaldoNew(noRek)) {
-                System.out.println("Saldo berhasil diset ulang");
-            } else {
-                System.out.println("Saldo gagal diset ulang");
-            }
+            TR.setSaldoNew(noRek);
             return true;
         } catch (Exception e) {
             System.out.println(e.toString());

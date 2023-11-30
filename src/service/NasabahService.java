@@ -22,4 +22,14 @@ public class NasabahService {
             return false;
         }
     }
+    
+    public boolean viewTransactionNasabah(String no_rekening){
+        try {
+            NR.viewTransactionNasabah(no_rekening);
+            return true;
+        } catch (Exception e) {
+            System.out.println(e.toString());
+            return false;
+        }
+    }
 }

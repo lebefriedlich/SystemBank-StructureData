@@ -4,16 +4,12 @@
  */
 package view;
 
-import controller.AdminController;
 import controller.NasabahController;
 import controller.TransactionController;
 import java.text.NumberFormat;
-import java.util.ArrayList;
 import java.util.Locale;
 import javax.swing.JOptionPane;
-import model.AdminModel;
 import model.TransactionModel;
-import service.AdminService;
 
 /**
  *

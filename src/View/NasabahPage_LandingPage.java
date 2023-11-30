@@ -4,12 +4,14 @@
  */
 package view;
 
+import controller.NasabahController;
 import controller.TransactionController;
 import java.sql.ResultSet;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Locale;
 import javax.swing.JOptionPane;
+import model.NasabahModel;
 import model.TransactionModel;
 
 /**
@@ -20,7 +22,8 @@ public class NasabahPage_LandingPage extends javax.swing.JFrame {
     private ResultSet rs;
     NumberFormat formatRp = NumberFormat.getCurrencyInstance(new Locale("in", "ID"));
     TransactionModel TM = new TransactionModel();
-    TransactionController TC = new TransactionController();
+    NasabahModel NM = new NasabahModel();
+    NasabahController NC = new NasabahController();
     
     /**
      * Creates new form NasabahPage
@@ -41,8 +44,8 @@ public class NasabahPage_LandingPage extends javax.swing.JFrame {
         lbl_noRek.setText(TM.getNoRek());
         lbl_saldo.setText(formatRp.format(TM.getSaldo()));
         try {
-            TC.viewTransactionNasabah(TM.getNoRek());
-            ArrayList<String[]> dataTransaction = TM.getDataTransaction();
+            NC.viewTransactionNasabah(TM.getNoRek());
+            ArrayList<String[]> dataTransaction = NM.getDataTransaction();
             for (String[] rowData : dataTransaction) {
                 rowData[2] = formatRp.format(Double.parseDouble(rowData[2]));
                 String datas = rowData[1] + "\t\t" + rowData[2] + "\n" + rowData[0] + "\t" + rowData[3] + "\n---------------------------------------------------------------------\n";

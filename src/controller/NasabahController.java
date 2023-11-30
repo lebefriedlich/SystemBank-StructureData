@@ -32,6 +32,12 @@ public class NasabahController {
         return notif;
     }
     
-    
-    
+    public String viewTransactionNasabah(String no_rekening) {
+        if (NS.viewTransactionNasabah(no_rekening)) {
+            notif = "Data Berhasil Ditampilkan";
+        } else {
+            notif = "Data Gagal Ditampilkan";
+        }
+        return notif;
+    }
 }

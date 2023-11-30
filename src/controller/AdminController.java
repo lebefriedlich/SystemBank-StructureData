@@ -87,6 +87,35 @@ public class AdminController {
         return notif;
     }
     
+    public String viewAllTransactionNasabah() {
+        if (AS.viewAllTransactionNasabah()) {
+            notif = "Data Berhasil Ditampilkan";
+        } else {
+            notif = "Data Gagal Ditampilkan";
+        }
+        return notif;
+    }
+    
+    public String deleteNasabah(String noRekening){
+        if (noRekening.isEmpty()) {
+            notif = "Nomor Rekening kosong";
+        } else if (AS.deleteNasabah(noRekening)) {
+            notif = "Data Berhasil Dihapus"; 
+        } else {
+            notif = "Data Gagal Dihapus"; 
+        }
+        return notif;
+    }
+    
+    public String viewTransactionNasabah(String noRekening) {
+        if (AS.viewTransactionNasabah(noRekening)) {
+            notif = "Data Berhasil Ditampilkan";
+        } else {
+            notif = "Data Gagal Ditampilkan";
+        }
+        return notif;
+    }
+    
     public String getStatus(String namaLengkap){
         if (namaLengkap.isEmpty()) {
             notif = "Nama Lengkap Kosong";
@@ -97,5 +126,4 @@ public class AdminController {
         }
         return notif;
     }
-    
 }

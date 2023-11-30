@@ -13,6 +13,7 @@ import java.util.ArrayList;
 public class AdminModel {
     private static ArrayList<String[]> dataNasabah;
     private static ArrayList<String[]> dataAdmin;
+    private static ArrayList<String[]> dataTransaction;
     private static String statusLogin, statusNasabah;
 
     public static String getStatusNasabah() {
@@ -45,5 +46,13 @@ public class AdminModel {
 
     public static void setDataNasabah(ArrayList<String[]> dataNasabah) {
         AdminModel.dataNasabah = dataNasabah;
+    }
+    
+    public static ArrayList<String[]> getDataTransaction() {
+        return dataTransaction;
+    }
+
+    public static void setDataTransaction(ArrayList<String[]> dataTransaction) {
+        AdminModel.dataTransaction = dataTransaction;
     }
 }

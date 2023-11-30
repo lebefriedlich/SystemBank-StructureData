@@ -7,7 +7,6 @@ package repository;
 import Util.StructureData;
 import model.TransactionModel;
 import java.sql.*;
-import java.util.ArrayList;
 
 /**
  *
@@ -22,7 +21,6 @@ public class TransactionRepository {
     private String query;
     TransactionModel TM = new TransactionModel();
     StructureData SD = new StructureData();
-    ArrayList<String[]> dataTransaction = new ArrayList<>();
 
     public TransactionRepository() {
         try {
@@ -54,40 +52,6 @@ public class TransactionRepository {
                 return false;
             }
         } catch (SQLException e) {
-            System.out.println(e);
-            return false;
-        }
-    }
-
-    public boolean viewTransactionNasabah(String no_rekening) {
-        try {
-            query = "SELECT DISTINCT Tanggal_Transaksi, Jenis_Transaksi, Jumlah_Transaksi, keterangan "
-                    + "FROM transfer WHERE no_rekening = ? "
-                    + "UNION "
-                    + "SELECT DISTINCT Tanggal_Transaksi, Jenis_Transaksi, Jumlah_Transaksi, keterangan "
-                    + "FROM setor_tunai WHERE no_rekening = ? "
-                    + "UNION "
-                    + "SELECT DISTINCT Tanggal_Transaksi, Jenis_Transaksi, Jumlah_Transaksi, keterangan "
-                    + "FROM tarik_tunai WHERE no_rekening  = ? ";
-            psmt = connection.prepareStatement(query);
-            psmt.setString(1, no_rekening);
-            psmt.setString(2, no_rekening);
-            psmt.setString(3, no_rekening);
-            rs = psmt.executeQuery();
-            dataTransaction.clear();
-            while (rs.next()) {
-                String[] row = new String[4];
-                row[0] = rs.getString("Tanggal_Transaksi");
-                row[1] = rs.getString("Jenis_Transaksi");
-                row[2] = rs.getString("Jumlah_Transaksi");
-                row[3] = rs.getString("keterangan");
-
-                dataTransaction.add(row);
-            }
-            SD.bubbleSortTransactionByDate(dataTransaction);
-            TM.setDataTransaction(dataTransaction);
-            return true;
-        } catch (Exception e) {
             System.out.println(e);
             return false;
         }

@@ -87,15 +87,6 @@ public class TransactionController {
         return notif;
     }
 
-    public String viewTransactionNasabah(String no_rekening) {
-        if (TS.viewTransactionNasabah(no_rekening)) {
-            notif = "Data Berhasil Ditampilkan";
-        } else {
-            notif = "Data Gagal Ditampilkan";
-        }
-        return notif;
-    }
-
     public String minusSaldo(String noRek, String jumlahTransaksi, String jenisTransaksi, String keterangan) {
         Matcher matcherSaldo = patternSaldo.matcher(jumlahTransaksi);
 
@@ -105,7 +96,7 @@ public class TransactionController {
             notif = "Maaf, Input saldo harus angka!";
         } else {
             if (TS.minusSaldo(noRek, jumlahTransaksi, jenisTransaksi, keterangan)) {
-                notif = "Anda Berhasil " + jenisTransaksi;
+                notif = "Anda Berhasil " + jenisTransaksi.replace("Keluar", "");
             } else {
                 notif = "Anda Gagal " + jenisTransaksi ;
             }
@@ -122,9 +113,9 @@ public class TransactionController {
             notif = "Maaf, Input saldo harus angka!";
         } else {
             if (TS.plusSaldo(noRek, jumlahTransaksi, jenisTransaksi, keterangan)) {
-                notif = "Anda Berhasil " + jenisTransaksi ;
+                notif = "Anda Berhasil " + jenisTransaksi;
             } else {
-                notif = "Anda Gagal " + jenisTransaksi ;
+                notif = "Anda Gagal " + jenisTransaksi;
             }
         }
         return notif;

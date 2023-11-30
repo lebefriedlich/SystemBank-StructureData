@@ -23,16 +23,6 @@ public class AdminService {
         }
     }
     
-    public boolean viewTransactionNasabah(){
-        try {
-            AR.viewAllNasabah();
-            return true;
-        } catch (Exception e) {
-            System.out.println(e.toString());
-            return false;
-        }
-    }
-    
     public boolean editData(String username, String password, String noTelepon, String email, String namaLengkap){
         try {
             AR.editData(username, password, noTelepon, email, namaLengkap);
@@ -43,9 +33,39 @@ public class AdminService {
         }
     }
     
+    public boolean deleteNasabah(String noRekening){
+        try {
+            AR.deleteNasabah(noRekening);
+            return true;
+        } catch (Exception e) {
+            System.out.println(e.toString());
+            return false;
+        }
+    }
+    
     public boolean activeOrNon(String namaLengkap, String status){
         try {
             AR.activeOrNon(namaLengkap, status);
+            return true;
+        } catch (Exception e) {
+            System.out.println(e.toString());
+            return false;
+        }
+    }
+    
+    public boolean viewAllTransactionNasabah(){
+        try {
+            AR.viewAllTransactionNasabah();
+            return true;
+        } catch (Exception e) {
+            System.out.println(e.toString());
+            return false;
+        }
+    }
+    
+    public boolean viewTransactionNasabah(String noRekening){
+        try {
+            AR.viewTransactionNasabah(noRekening);
             return true;
         } catch (Exception e) {
             System.out.println(e.toString());

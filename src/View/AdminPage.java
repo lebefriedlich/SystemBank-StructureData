@@ -9,13 +9,13 @@ import controller.AdminController;
 import controller.TransactionController;
 import java.awt.event.KeyEvent;
 import java.text.NumberFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Locale;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.AdminModel;
 import model.TransactionModel;
-import service.AdminService;
 
 /**
  *
@@ -33,6 +33,7 @@ public class AdminPage extends javax.swing.JFrame {
     private String notif, notif1;
     NumberFormat formatRp = NumberFormat.getCurrencyInstance(new Locale("in", "ID"));
     ArrayList<String[]> dataNasabah;
+    ArrayList<String[]> dataTransaction;
 
     /**
      * Creates new form LoginPage
@@ -41,18 +42,11 @@ public class AdminPage extends javax.swing.JFrame {
         if ("Active".equals(TM.getStatusLogin())) {
             initComponents();
             tampil_datauser();
+            tampil_transaksi();
             tf_noRek.setEditable(false);
             tf_status.setEditable(false);
             tab_data.setEnabled(false);
             tab_aktifitas.setEnabled(false);
-            tab_data.setAutoResizeMode(tab_data.AUTO_RESIZE_OFF);
-            tab_data.getColumnModel().getColumn(0).setPreferredWidth(100);
-            tab_data.getColumnModel().getColumn(1).setPreferredWidth(245);
-            tab_data.getColumnModel().getColumn(2).setPreferredWidth(75);
-            tab_data.getColumnModel().getColumn(3).setPreferredWidth(95);
-            tab_data.getColumnModel().getColumn(4).setPreferredWidth(95);
-            tab_data.getColumnModel().getColumn(5).setPreferredWidth(200);
-            tab_data.getColumnModel().getColumn(6).setPreferredWidth(115);
         } else {
             dispose();
             LoginPage LP = new LoginPage();
@@ -62,14 +56,44 @@ public class AdminPage extends javax.swing.JFrame {
 
     public void tampil_datauser() {
         tabMode = (DefaultTableModel) tab_data.getModel();
+        tab_data.setAutoResizeMode(tab_data.AUTO_RESIZE_OFF);
+        tab_data.getColumnModel().getColumn(0).setPreferredWidth(100);
+        tab_data.getColumnModel().getColumn(1).setPreferredWidth(245);
+        tab_data.getColumnModel().getColumn(2).setPreferredWidth(75);
+        tab_data.getColumnModel().getColumn(3).setPreferredWidth(95);
+        tab_data.getColumnModel().getColumn(4).setPreferredWidth(95);
+        tab_data.getColumnModel().getColumn(5).setPreferredWidth(200);
+        tab_data.getColumnModel().getColumn(6).setPreferredWidth(115);
         tab_data.setModel(tabMode);
-        tab_data.setRowHeight(35);
         tabMode.setRowCount(0);
         AC.viewAllNasabah();
         dataNasabah = AM.getDataNasabah();
         try {
             for (String[] rowData : dataNasabah) {
                 rowData[6] = formatRp.format(Double.parseDouble(rowData[6]));
+                tabMode.addRow(rowData);
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+
+    public void tampil_transaksi() {
+        tabMode = (DefaultTableModel) tab_aktifitas.getModel();
+        tab_aktifitas.setAutoResizeMode(tab_data.AUTO_RESIZE_OFF);
+        tab_aktifitas.getColumnModel().getColumn(0).setPreferredWidth(140);
+        tab_aktifitas.getColumnModel().getColumn(1).setPreferredWidth(120);
+        tab_aktifitas.getColumnModel().getColumn(2).setPreferredWidth(245);
+        tab_aktifitas.getColumnModel().getColumn(3).setPreferredWidth(125);
+        tab_aktifitas.getColumnModel().getColumn(4).setPreferredWidth(155);
+        tab_aktifitas.getColumnModel().getColumn(5).setPreferredWidth(140);
+        tab_aktifitas.setModel(tabMode);
+        tabMode.setRowCount(0);
+        AC.viewAllTransactionNasabah();
+        dataTransaction = AM.getDataTransaction();
+        try {
+            for (String[] rowData : dataTransaction) {
+                rowData[4] = formatRp.format(Double.parseDouble(rowData[4]));
                 tabMode.addRow(rowData);
             }
         } catch (Exception e) {
@@ -90,9 +114,6 @@ public class AdminPage extends javax.swing.JFrame {
         tf_rek1.setText("");
         tf_rekTuj.setText("");
         tf_nom.setText("");
-//        lab_aktifitas.setText("");
-        tabMode = new DefaultTableModel();
-        tab_aktifitas.setModel(tabMode);
     }
 
     /**
@@ -118,6 +139,7 @@ public class AdminPage extends javax.swing.JFrame {
         bt_edit = new javax.swing.JButton();
         bt_activeOrNon = new javax.swing.JButton();
         bt_reset = new javax.swing.JButton();
+        bt_delete = new javax.swing.JButton();
         bt_tampilAktifitas = new javax.swing.JButton();
         tf_nominal = new javax.swing.JTextField();
         bt_tarTun = new javax.swing.JButton();
@@ -154,6 +176,7 @@ public class AdminPage extends javax.swing.JFrame {
                 "No Rekening", "Full Name", "Username", "Password", "Phone Number", "Email", "Balance"
             }
         ));
+        tab_data.setRowHeight(35);
         tab_data.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tab_dataMouseClicked(evt);
@@ -172,7 +195,7 @@ public class AdminPage extends javax.swing.JFrame {
                 bt_registerActionPerformed(evt);
             }
         });
-        getContentPane().add(bt_register, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 340, 80, -1));
+        getContentPane().add(bt_register, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 340, 80, -1));
 
         bt_edit.setBackground(new java.awt.Color(171, 237, 216));
         bt_edit.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -183,7 +206,7 @@ public class AdminPage extends javax.swing.JFrame {
                 bt_editActionPerformed(evt);
             }
         });
-        getContentPane().add(bt_edit, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 340, -1, -1));
+        getContentPane().add(bt_edit, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 340, -1, -1));
 
         bt_activeOrNon.setBackground(new java.awt.Color(171, 237, 216));
         bt_activeOrNon.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -194,7 +217,7 @@ public class AdminPage extends javax.swing.JFrame {
                 bt_activeOrNonActionPerformed(evt);
             }
         });
-        getContentPane().add(bt_activeOrNon, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 340, -1, -1));
+        getContentPane().add(bt_activeOrNon, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 340, -1, -1));
 
         bt_reset.setBackground(new java.awt.Color(171, 237, 216));
         bt_reset.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -205,7 +228,18 @@ public class AdminPage extends javax.swing.JFrame {
                 bt_resetActionPerformed(evt);
             }
         });
-        getContentPane().add(bt_reset, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 370, 80, -1));
+        getContentPane().add(bt_reset, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 370, 80, -1));
+
+        bt_delete.setBackground(new java.awt.Color(171, 237, 216));
+        bt_delete.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        bt_delete.setForeground(new java.awt.Color(72, 70, 109));
+        bt_delete.setText("Delete");
+        bt_delete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_deleteActionPerformed(evt);
+            }
+        });
+        getContentPane().add(bt_delete, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 370, 80, -1));
 
         bt_tampilAktifitas.setBackground(new java.awt.Color(171, 237, 216));
         bt_tampilAktifitas.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -216,7 +250,7 @@ public class AdminPage extends javax.swing.JFrame {
                 bt_tampilAktifitasActionPerformed(evt);
             }
         });
-        getContentPane().add(bt_tampilAktifitas, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 370, 120, -1));
+        getContentPane().add(bt_tampilAktifitas, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 370, 120, -1));
         getContentPane().add(tf_nominal, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 440, 180, 23));
 
         bt_tarTun.setBackground(new java.awt.Color(171, 237, 216));
@@ -281,9 +315,10 @@ public class AdminPage extends javax.swing.JFrame {
 
             },
             new String [] {
-
+                "Transaction time", "Account number", "Customer Name", "Transaction Type", "Amount Transaction", "Status"
             }
         ));
+        tab_aktifitas.setRowHeight(25);
         jScrollPane1.setViewportView(tab_aktifitas);
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 440, 950, 210));
@@ -366,22 +401,20 @@ public class AdminPage extends javax.swing.JFrame {
 
     private void bt_resetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_resetActionPerformed
         reset();
+        tampil_transaksi();
     }//GEN-LAST:event_bt_resetActionPerformed
 
     private void bt_tampilAktifitasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_tampilAktifitasActionPerformed
-        Object[] baris = {"Waktu", "Jenis Transaksi", "Jumlah Transaksi", "Keterangan"};
-        tabMode = new DefaultTableModel(null, baris);
-        TC.viewTransactionNasabah(tf_noRek.getText());
+        tabMode = (DefaultTableModel) tab_aktifitas.getModel();
+        tab_aktifitas.setModel(tabMode);
+        tabMode.setRowCount(0);
+        AC.viewTransactionNasabah(tf_noRek.getText());
+        dataTransaction = AM.getDataTransaction();
         try {
-            tabMode.setRowCount(0);
-            ArrayList<String[]> dataTransaction = TM.getDataTransaction();
             for (String[] rowData : dataTransaction) {
-                rowData[2] = formatRp.format(Double.parseDouble(rowData[2]));
+                rowData[4] = formatRp.format(Double.parseDouble(rowData[4]));
                 tabMode.addRow(rowData);
             }
-            tab_aktifitas.setModel(tabMode);
-            tab_aktifitas.setRowHeight(25);
-//            lab_aktifitas.setText(tf_namaLengkap.getText());
         } catch (Exception e) {
             System.out.println(e);
         }
@@ -528,6 +561,21 @@ public class AdminPage extends javax.swing.JFrame {
         TM.setStatusLogin(null);
     }//GEN-LAST:event_lbl_exitMouseClicked
 
+    private void bt_deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_deleteActionPerformed
+        int pilihan = JOptionPane.showConfirmDialog(null, "Apakah Data Nasabah Dihapus?", "Keluar", JOptionPane.YES_NO_OPTION);
+            if (pilihan == JOptionPane.YES_OPTION) {
+                try {
+                    notif = AC.deleteNasabah(tf_noRek.getText());
+                    JOptionPane.showMessageDialog(null, notif, "Informasi", JOptionPane.INFORMATION_MESSAGE);
+                    tampil_datauser();
+                    tampil_transaksi();
+                    reset();
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(null, "Data gagal dihapus", "Informasi", JOptionPane.INFORMATION_MESSAGE);
+                }
+            }
+    }//GEN-LAST:event_bt_deleteActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -566,6 +614,7 @@ public class AdminPage extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bt_activeOrNon;
+    private javax.swing.JButton bt_delete;
     private javax.swing.JButton bt_edit;
     private javax.swing.JButton bt_register;
     private javax.swing.JButton bt_reset;
