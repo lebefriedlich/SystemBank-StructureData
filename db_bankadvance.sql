@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 30, 2023 at 09:33 AM
+-- Generation Time: Nov 30, 2023 at 03:22 PM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -40,18 +40,18 @@ CREATE TABLE `rekening` (
 
 INSERT INTO `rekening` (`no_rekening`, `ID_nasabah`, `Saldo`, `Tanggal_Daftar`) VALUES
 (19210204000001, 1, 0, '2023-11-12 08:31:15'),
-(19210204000002, 2, 49500000, '2023-11-29 16:38:11'),
+(19210204000002, 2, 90000000, '2023-11-30 14:12:16'),
 (19210204000003, 3, 0, '2023-11-12 08:09:18'),
-(19210204000004, 4, 35000000, '2023-11-15 23:09:22'),
-(19210204000005, 5, 69500000, '2023-11-29 16:38:11'),
-(19210204000006, 6, 96000000, '2023-11-29 08:41:14'),
-(19210204000007, 7, 65000000, '2023-11-12 14:09:26'),
+(19210204000005, 5, 70000000, '2023-11-30 13:20:10'),
+(19210204000006, 6, 74500000, '2023-11-30 13:21:27'),
+(19210204000007, 7, 65000000, '2023-11-30 13:33:39'),
 (19210204000008, 8, 45000000, '2023-11-13 14:00:05'),
 (19210204000009, 9, 90000000, '2023-11-15 23:09:22'),
-(19210204000010, 10, 109000000, '2023-11-29 03:53:05'),
+(19210204000010, 10, 90000000, '2023-11-30 13:13:31'),
 (19210204000011, 11, 50000000, '2023-11-15 01:56:42'),
 (19210204000012, 12, 60000000, '2023-11-15 01:59:33'),
-(19210204000013, 13, 80000000, '2023-11-15 02:18:33');
+(19210204000013, 13, 80000000, '2023-11-15 02:18:33'),
+(19210204000014, 14, 50000000, '2023-11-30 14:19:58');
 
 -- --------------------------------------------------------
 
@@ -93,19 +93,21 @@ CREATE TABLE `setor_tunai` (
 
 INSERT INTO `setor_tunai` (`ID_transaksi`, `no_rekening`, `Tanggal_Transaksi`, `Jenis_Transaksi`, `Jumlah_Transaksi`, `keterangan`) VALUES
 (1, 19210204000002, '2023-11-04 09:52:22', 'Setor Tunai', '100000000', 'Berhasil'),
-(2, 19210204000004, '2023-11-12 14:09:26', 'Setor Tunai', '50000000', 'Berhasil'),
 (3, 19210204000005, '2023-11-12 14:09:26', 'Setor Tunai', '60000000', 'Berhasil'),
 (4, 19210204000006, '2023-11-12 14:09:26', 'Setor Tunai', '75000000', 'Berhasil'),
 (5, 19210204000007, '2023-11-12 14:09:26', 'Setor Tunai', '65000000', 'Berhasil'),
 (6, 19210204000008, '2023-11-12 14:09:26', 'Setor Tunai', '45000000', 'Berhasil'),
 (7, 19210204000009, '2023-11-12 14:09:26', 'Setor Tunai', '80000000', 'Berhasil'),
 (8, 19210204000005, '2023-11-13 13:16:21', 'Setor Tunai', '10000000', 'Berhasil'),
-(9, 19210204000004, '2023-11-14 09:16:51', 'Setor Tunai', '2500000', 'Berhasil'),
 (10, 19210204000010, '2023-11-15 01:52:18', 'Setor Tunai', '100000000', 'Berhasil'),
 (11, 19210204000011, '2023-11-15 01:56:42', 'Setor Tunai', '50000000', 'Berhasil'),
 (12, 19210204000012, '2023-11-15 01:59:33', 'Setor Tunai', '60000000', 'Berhasil'),
 (13, 19210204000013, '2023-11-15 02:18:33', 'Setor Tunai', '80000000', 'Berhasil'),
-(14, 19210204000002, '2023-11-15 08:08:20', 'Setor Tunai', '5000000', 'Berhasil');
+(14, 19210204000002, '2023-11-15 08:08:20', 'Setor Tunai', '5000000', 'Berhasil'),
+(15, 19210204000005, '2023-11-30 13:20:10', 'Setor Tunai', '1000000', 'Berhasil'),
+(18, 19210204000002, '2023-11-30 14:12:16', 'Setor Tunai', '1000000', 'Berhasil'),
+(19, 19210204000014, '2023-11-30 14:19:14', 'Setor Tunai', '100000.0', 'Berhasil'),
+(20, 19210204000014, '2023-11-30 14:19:58', 'Setor Tunai', '49900000', 'Berhasil');
 
 -- --------------------------------------------------------
 
@@ -131,9 +133,10 @@ INSERT INTO `tarik_tunai` (`ID_transaksi`, `no_rekening`, `Tanggal_Transaksi`, `
 (2, 19210204000002, '2023-11-13 13:03:34', 'Tarik Tunai', '5000000', 'Berhasil'),
 (3, 19210204000002, '2023-11-13 13:06:08', 'Tarik Tunai', '5000000', 'Berhasil'),
 (4, 19210204000002, '2023-11-13 13:07:23', 'Tarik Tunai', '5000000', 'Berhasil'),
-(5, 19210204000004, '2023-11-14 09:17:06', 'Tarik Tunai', '2500000', 'Berhasil'),
 (6, 19210204000002, '2023-11-15 08:06:34', 'Tarik Tunai', '5000000', 'Berhasil'),
-(7, 19210204000002, '2023-11-29 03:23:17', 'Tarik Tunai', '1000000', 'Berhasil');
+(7, 19210204000002, '2023-11-29 03:23:17', 'Tarik Tunai', '1000000', 'Berhasil'),
+(8, 19210204000005, '2023-11-30 13:20:02', 'Tarik Tunai', '500000', 'Berhasil'),
+(9, 19210204000002, '2023-11-30 14:11:16', 'Tarik Tunai', '1000000', 'Berhasil');
 
 -- --------------------------------------------------------
 
@@ -155,20 +158,22 @@ CREATE TABLE `transfer` (
 --
 
 INSERT INTO `transfer` (`ID_transaksi`, `no_rekening`, `Tanggal_Transaksi`, `Jenis_Transaksi`, `Jumlah_Transaksi`, `keterangan`) VALUES
-(1, 19210204000004, '2023-11-13 14:00:05', 'Transfer Keluar', '5000000', 'ke 19210204000008'),
 (2, 19210204000008, '2023-11-13 14:00:05', 'Transfer Masuk', '5000000', 'dari 19210204000004'),
 (3, 19210204000002, '2023-11-14 08:45:12', 'Transfer Keluar', '10000000', 'ke 19210204000006'),
 (4, 19210204000006, '2023-11-14 08:45:12', 'Transfer Masuk', '10000000', 'dari 19210204000002'),
 (5, 19210204000005, '2023-11-15 23:05:12', 'Transfer Keluar', '1000000', 'ke 19210204000006'),
 (6, 19210204000006, '2023-11-15 23:05:12', 'Transfer Masuk', '1000000', 'dari 19210204000005'),
-(7, 19210204000004, '2023-11-15 23:09:22', 'Transfer Keluar', '10000000', 'ke 19210204000009'),
 (8, 19210204000009, '2023-11-15 23:09:22', 'Transfer Masuk', '10000000', 'dari 19210204000004'),
 (9, 19210204000002, '2023-11-29 03:53:05', 'Transfer Keluar', '9000000', 'ke 19210204000010'),
 (10, 19210204000010, '2023-11-29 03:53:05', 'Transfer Masuk', '9000000', 'dari 19210204000002'),
 (11, 19210204000002, '2023-11-29 08:41:14', 'Transfer Keluar', '10000000', 'ke 19210204000006'),
 (12, 19210204000006, '2023-11-29 08:41:14', 'Transfer Masuk', '10000000', 'dari 19210204000002'),
 (13, 19210204000002, '2023-11-29 16:38:11', 'Transfer Keluar', '500000', 'ke 19210204000005'),
-(14, 19210204000005, '2023-11-29 16:38:11', 'Transfer Masuk', '500000', 'dari 19210204000002');
+(14, 19210204000005, '2023-11-29 16:38:11', 'Transfer Masuk', '500000', 'dari 19210204000002'),
+(15, 19210204000010, '2023-11-30 13:13:31', 'Transfer Keluar', '19000000', 'ke 19210204000002'),
+(16, 19210204000002, '2023-11-30 13:13:31', 'Transfer Masuk', '19000000', 'dari 19210204000010'),
+(17, 19210204000006, '2023-11-30 13:21:27', 'Transfer Keluar', '21500000', 'ke 19210204000002'),
+(18, 19210204000002, '2023-11-30 13:21:27', 'Transfer Masuk', '21500000', 'dari 19210204000006');
 
 -- --------------------------------------------------------
 
@@ -192,19 +197,19 @@ CREATE TABLE `user_bank` (
 --
 
 INSERT INTO `user_bank` (`ID_nasabah`, `nama_lengkap`, `username`, `password`, `no_hp`, `email`, `status`, `role_id`) VALUES
-(1, 'Maulana Haekal Noval Akbar', 'hae192', '190204', '081359654483', 'noval.akbar.906@gmail.com', 'Active', 1),
-(2, 'Maulana Haekal Noval Akbar', 'val192', '190204', '081359654483', 'maulanahaekal906@gmail.com', 'Active', 2),
+(1, 'Maulana Haekal Noval Akbar', 'hae192', '190204', '081359654481', 'noval.akbar.906@gmail.com', 'Active', 1),
+(2, 'Maulana Haekal Noval Akbar', 'val192', '190204', '081359654482', 'maulanahaekal906@gmail.com', 'Active', 2),
 (3, 'Wafiy Anwarul Hikam', 'fiy211', '210104', '081111111111', 'wafiyanwarul@gmail.com', 'Active', 1),
-(4, 'John Doe', 'u01a01', '123456', '123456789012', 'johndoe99@gmail.com', 'Active', 2),
-(5, 'Jane Doe', 'u02a02', '234567', '987654321098', 'janedoe64@gmail.com', 'Active', 2),
-(6, 'Alice Smith', 'u03a03', '345678', '555555555555', 'alice.smith@example.com', 'Active', 2),
-(7, 'Bob Johnson', 'u04a04', '456789', '333333333333', 'bob.johnson@example.com', 'Active', 2),
-(8, 'Eva Brown', 'u05a05', '567890', '999999999999', 'eva.brown@example.com', 'Active', 2),
-(9, 'Charlie White', 'u06a06', '678901', '777777777777', 'charlie.white@example.com', 'Active', 2),
+(5, 'Jane Doe', 'u02a02', '234567', '081356451232', 'janedoe64@gmail.com', 'Active', 2),
+(6, 'Alice Smith', 'u03a03', '345678', '085278984565', 'alicesmith@gmail.com', 'Active', 2),
+(7, 'Bob Johnson', 'u04a04', '456789', '085932124565', 'bobjohnson@gmail.com', 'Active', 2),
+(8, 'Eva Brown', 'u05a05', '567890', '082196368525', 'evabrown@gmail.com', 'Active', 2),
+(9, 'Charlie White', 'u06a06', '678901', '081374148525', 'charliewhite@gmail.com', 'Active', 2),
 (10, 'Almira Tasya Nabila', 'sya212', '210204', '081355556666', 'tasyuu78@gmail.com', 'Active', 2),
 (11, 'Wafiy Anwarul Hikam', 'waf555', '555666', '085244446666', 'wafiy@gmail.com', 'Active', 2),
 (12, 'Alsy Amalia Jasmine Muin', 'als789', '789456', '085744449999', 'alsy@gmail.com', 'Active', 2),
-(13, 'Rifdan Acmal Faza', 'mil987', '987456', '085978945612', 'kom_il99@gmail.com', 'Active', 2);
+(13, 'Rifdan Acmal Faza', 'mil987', '987456', '085978945612', 'kom_il99@gmail.com', 'Active', 2),
+(14, 'Rifdan Acmal Faza', 'mil945', '170845', '081311224455', 'komil945@gmail.com', 'Active', 2);
 
 --
 -- Indexes for dumped tables
@@ -260,7 +265,7 @@ ALTER TABLE `user_bank`
 -- AUTO_INCREMENT for table `rekening`
 --
 ALTER TABLE `rekening`
-  MODIFY `no_rekening` bigint(14) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19210204000014;
+  MODIFY `no_rekening` bigint(14) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19210204000015;
 
 --
 -- AUTO_INCREMENT for table `roles`
@@ -272,25 +277,25 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT for table `setor_tunai`
 --
 ALTER TABLE `setor_tunai`
-  MODIFY `ID_transaksi` int(13) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `ID_transaksi` int(13) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `tarik_tunai`
 --
 ALTER TABLE `tarik_tunai`
-  MODIFY `ID_transaksi` int(13) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `ID_transaksi` int(13) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `transfer`
 --
 ALTER TABLE `transfer`
-  MODIFY `ID_transaksi` int(13) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `ID_transaksi` int(13) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `user_bank`
 --
 ALTER TABLE `user_bank`
-  MODIFY `ID_nasabah` int(13) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `ID_nasabah` int(13) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- Constraints for dumped tables
