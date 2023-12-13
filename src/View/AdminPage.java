@@ -9,8 +9,7 @@ import controller.AdminController;
 import controller.TransactionController;
 import java.awt.event.KeyEvent;
 import java.text.NumberFormat;
-import java.time.LocalDate;
-import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.Locale;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -32,8 +31,8 @@ public class AdminPage extends javax.swing.JFrame {
     private DefaultTableModel tabMode;
     private String notif, notif1;
     NumberFormat formatRp = NumberFormat.getCurrencyInstance(new Locale("in", "ID"));
-    ArrayList<String[]> dataNasabah;
-    ArrayList<String[]> dataTransaction;
+    LinkedList<String[]> dataNasabah;
+    LinkedList<String[]> dataTransaction;
 
     /**
      * Creates new form LoginPage
@@ -143,8 +142,8 @@ public class AdminPage extends javax.swing.JFrame {
         bt_delete = new javax.swing.JButton();
         bt_tampilAktifitas = new javax.swing.JButton();
         tf_nominal = new javax.swing.JTextField();
-        bt_tarTun = new javax.swing.JButton();
-        bt_setTun = new javax.swing.JButton();
+        bt_cashWithdrawal = new javax.swing.JButton();
+        bt_cashDeposit = new javax.swing.JButton();
         tf_rek1 = new javax.swing.JTextField();
         tf_rekTuj = new javax.swing.JTextField();
         tf_nom = new javax.swing.JTextField();
@@ -254,27 +253,27 @@ public class AdminPage extends javax.swing.JFrame {
         getContentPane().add(bt_tampilAktifitas, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 370, 120, -1));
         getContentPane().add(tf_nominal, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 440, 180, 23));
 
-        bt_tarTun.setBackground(new java.awt.Color(171, 237, 216));
-        bt_tarTun.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        bt_tarTun.setForeground(new java.awt.Color(72, 70, 109));
-        bt_tarTun.setText("Cash Withdrawal");
-        bt_tarTun.addActionListener(new java.awt.event.ActionListener() {
+        bt_cashWithdrawal.setBackground(new java.awt.Color(171, 237, 216));
+        bt_cashWithdrawal.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        bt_cashWithdrawal.setForeground(new java.awt.Color(72, 70, 109));
+        bt_cashWithdrawal.setText("Cash Withdrawal");
+        bt_cashWithdrawal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bt_tarTunActionPerformed(evt);
+                bt_cashWithdrawalActionPerformed(evt);
             }
         });
-        getContentPane().add(bt_tarTun, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 470, 130, -1));
+        getContentPane().add(bt_cashWithdrawal, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 470, 130, -1));
 
-        bt_setTun.setBackground(new java.awt.Color(171, 237, 216));
-        bt_setTun.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        bt_setTun.setForeground(new java.awt.Color(72, 70, 109));
-        bt_setTun.setText("Cash Deposit");
-        bt_setTun.addActionListener(new java.awt.event.ActionListener() {
+        bt_cashDeposit.setBackground(new java.awt.Color(171, 237, 216));
+        bt_cashDeposit.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        bt_cashDeposit.setForeground(new java.awt.Color(72, 70, 109));
+        bt_cashDeposit.setText("Cash Deposit");
+        bt_cashDeposit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bt_setTunActionPerformed(evt);
+                bt_cashDepositActionPerformed(evt);
             }
         });
-        getContentPane().add(bt_setTun, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 470, 110, -1));
+        getContentPane().add(bt_cashDeposit, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 470, 110, -1));
         getContentPane().add(tf_rek1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 540, 180, 23));
 
         tf_rekTuj.addActionListener(new java.awt.event.ActionListener() {
@@ -433,7 +432,7 @@ public class AdminPage extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_bt_tampilAktifitasActionPerformed
 
-    private void bt_tarTunActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_tarTunActionPerformed
+    private void bt_cashWithdrawalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_cashWithdrawalActionPerformed
         if (tf_noRek.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Data belum diisi", "Informasi", JOptionPane.INFORMATION_MESSAGE);
             return;
@@ -448,9 +447,9 @@ public class AdminPage extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(null, "Saldo Anda Tidak Mencukupi", "Informasi", JOptionPane.INFORMATION_MESSAGE);
         }
-    }//GEN-LAST:event_bt_tarTunActionPerformed
+    }//GEN-LAST:event_bt_cashWithdrawalActionPerformed
 
-    private void bt_setTunActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_setTunActionPerformed
+    private void bt_cashDepositActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_cashDepositActionPerformed
         if (tf_noRek.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Data belum diisi", "Informasi", JOptionPane.INFORMATION_MESSAGE);
             return;
@@ -460,7 +459,7 @@ public class AdminPage extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(null, notif, "Informasi", JOptionPane.INFORMATION_MESSAGE);
         tampil_datauser();
         reset();
-    }//GEN-LAST:event_bt_setTunActionPerformed
+    }//GEN-LAST:event_bt_cashDepositActionPerformed
 
     private void tf_rekTujActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_rekTujActionPerformed
         if (tf_rekTuj.getText().trim().equals(tf_rek1.getText())) {
@@ -645,13 +644,13 @@ public class AdminPage extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bt_activeOrNon;
+    private javax.swing.JButton bt_cashDeposit;
+    private javax.swing.JButton bt_cashWithdrawal;
     private javax.swing.JButton bt_delete;
     private javax.swing.JButton bt_edit;
     private javax.swing.JButton bt_register;
     private javax.swing.JButton bt_reset;
-    private javax.swing.JButton bt_setTun;
     private javax.swing.JButton bt_tampilAktifitas;
-    private javax.swing.JButton bt_tarTun;
     private javax.swing.JButton bt_transfer;
     private javax.swing.JComboBox<String> cb_sorting;
     private javax.swing.JScrollPane jScrollPane1;

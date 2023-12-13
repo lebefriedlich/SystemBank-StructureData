@@ -4,16 +4,16 @@
  */
 package model;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
 
 /**
  *
  * @author HP
  */
 public class AdminModel {
-    private static ArrayList<String[]> dataNasabah;
-    private static ArrayList<String[]> dataAdmin;
-    private static ArrayList<String[]> dataTransaction;
+    private static LinkedList<String[]> dataNasabah;
+    private static LinkedList<String[]> dataAdmin;
+    private static LinkedList<String[]> dataTransaction;
     private static String statusLogin, statusNasabah;
 
     public static String getStatusNasabah() {
@@ -32,27 +32,27 @@ public class AdminModel {
         AdminModel.statusLogin = statusLogin;
     }
 
-    public static ArrayList<String[]> getDataAdmin() {
+    public static LinkedList<String[]> getDataAdmin() {
         return dataAdmin;
     }
 
-    public static void setDataAdmin(ArrayList<String[]> dataAdmin) {
+    public static void setDataAdmin(LinkedList<String[]> dataAdmin) {
         AdminModel.dataAdmin = dataAdmin;
     }
 
-    public static ArrayList<String[]> getDataNasabah() {
+    public static LinkedList<String[]> getDataNasabah() {
         return dataNasabah;
     }
 
-    public static void setDataNasabah(ArrayList<String[]> dataNasabah) {
+    public static void setDataNasabah(LinkedList<String[]> dataNasabah) {
         AdminModel.dataNasabah = dataNasabah;
     }
     
-    public static ArrayList<String[]> getDataTransaction() {
+    public static LinkedList<String[]> getDataTransaction() {
         return dataTransaction;
     }
 
-    public static void setDataTransaction(ArrayList<String[]> dataTransaction) {
+    public static void setDataTransaction(LinkedList<String[]> dataTransaction) {
         AdminModel.dataTransaction = dataTransaction;
     }
 }

@@ -22,9 +22,9 @@ public class AdminRepository {
     private Statement stat;
     private ResultSet rs;
     private String query;
-    ArrayList<String[]> dataNasabah = new ArrayList<>();
-    ArrayList<String[]> dataAdmin = new ArrayList<>();
-    ArrayList<String[]> dataTransaction = new ArrayList<>();
+    LinkedList<String[]> dataNasabah = new LinkedList<>();
+    LinkedList<String[]> dataAdmin = new LinkedList<>();
+    LinkedList<String[]> dataTransaction = new LinkedList<>();
 
     public AdminRepository() {
         try {

@@ -5,10 +5,9 @@
 package view;
 
 import controller.NasabahController;
-import controller.TransactionController;
 import java.sql.ResultSet;
 import java.text.NumberFormat;
-import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.Locale;
 import javax.swing.JOptionPane;
 import model.NasabahModel;
@@ -45,7 +44,7 @@ public class NasabahPage_LandingPage extends javax.swing.JFrame {
         lbl_saldo.setText(formatRp.format(TM.getSaldo()));
         try {
             NC.viewTransactionNasabah(TM.getNoRek());
-            ArrayList<String[]> dataTransaction = NM.getDataTransaction();
+            LinkedList<String[]> dataTransaction = NM.getDataTransaction();
             for (String[] rowData : dataTransaction) {
                 rowData[2] = formatRp.format(Double.parseDouble(rowData[2]));
                 String datas = rowData[1] + "\t\t" + rowData[2] + "\n" + rowData[0] + "\t" + rowData[3] + "\n---------------------------------------------------------------------\n";

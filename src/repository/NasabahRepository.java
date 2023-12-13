@@ -6,7 +6,7 @@ package repository;
 
 import Util.StructureData;
 import java.sql.*;
-import java.util.ArrayList;
+import java.util.LinkedList;
 import model.NasabahModel;
 
 /**
@@ -22,7 +22,7 @@ public class NasabahRepository {
     private String query;
     NasabahModel NM = new NasabahModel();
     StructureData SD = new StructureData();
-    ArrayList<String[]> dataTransaction = new ArrayList<>();
+    LinkedList<String[]> dataTransaction = new LinkedList<>();
 
     public NasabahRepository() {
         try {

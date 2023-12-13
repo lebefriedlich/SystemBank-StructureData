@@ -4,7 +4,7 @@
  */
 package model;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
 
 /**
  *
@@ -12,13 +12,13 @@ import java.util.ArrayList;
  */
 public class NasabahModel {
    private static String namaLengkap;
-    private static ArrayList<String[]> dataTransaction = new ArrayList<>();
+    private static LinkedList<String[]> dataTransaction = new LinkedList<>();
 
-    public static ArrayList<String[]> getDataTransaction() {
+    public static LinkedList<String[]> getDataTransaction() {
         return dataTransaction;
     }
 
-    public static void setDataTransaction(ArrayList<String[]> dataTransaction) {
+    public static void setDataTransaction(LinkedList<String[]> dataTransaction) {
         NasabahModel.dataTransaction = dataTransaction;
     }
 

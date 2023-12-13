@@ -13,7 +13,7 @@ import java.util.*;
  */
 public class StructureData {
 
-    public static void bubbleSortByAccountNumber(ArrayList<String[]> arr) {
+    public static void bubbleSortByAccountNumber(LinkedList<String[]> arr) {
         try {
             int n = arr.size();
             for (int i = 0; i < n - 1; i++) {
@@ -33,7 +33,7 @@ public class StructureData {
         }
     }
 
-    public static void bubbleSortByName(ArrayList<String[]> arr) {
+    public static void bubbleSortByName(LinkedList<String[]> arr) {
         int n = arr.size();
         for (int i = 0; i < n - 1; i++) {
             for (int j = 0; j < n - i - 1; j++) {
@@ -49,7 +49,7 @@ public class StructureData {
         }
     }
 
-    public static void bubbleSortTransactionByDate(ArrayList<String[]> arr) {
+    public static void bubbleSortTransactionByDate(LinkedList<String[]> arr) {
         int n = arr.size();
         for (int i = 0; i < n - 1; i++) {
             for (int j = 0; j < n - i - 1; j++) {
@@ -75,7 +75,7 @@ public class StructureData {
         }
     }
 
-    public static String[] binarySearchByAccountNumber(ArrayList<String[]> list, String target) {
+    public static String[] binarySearchByAccountNumber(LinkedList<String[]> list, String target) {
         bubbleSortByAccountNumber(list);
         
         int left = 0;
@@ -101,7 +101,7 @@ public class StructureData {
         return null; // Element tidak ditemukan
     }
     
-    public static String[] binarySearchByName(ArrayList<String[]> list, String target) {
+    public static String[] binarySearchByName(LinkedList<String[]> list, String target) {
         bubbleSortByName(list);
         
         int left = 0;
