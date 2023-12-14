@@ -25,7 +25,7 @@ public class NasabahController {
         if (!matcherNoRek.matches()) {
             notif = "Nomor Rekening harus memiliki 14 angka";
         } else if (NS.getNamaLengkap(noRek)){
-            notif = NM.getNamaLengkap();
+            notif = NM.getNamaLengkap() + " dari " + NM.getNamaBank();
         } else {
             notif = null;
         }

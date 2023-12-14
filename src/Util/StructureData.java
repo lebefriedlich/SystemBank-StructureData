@@ -13,7 +13,7 @@ import java.util.*;
  */
 public class StructureData {
 
-    public static void bubbleSortByAccountNumber(LinkedList<String[]> arr) {
+    public static void bubbleSortByAccountNumberAsc(LinkedList<String[]> arr) {
         try {
             int n = arr.size();
             for (int i = 0; i < n - 1; i++) {
@@ -32,8 +32,28 @@ public class StructureData {
             System.out.println(e);
         }
     }
+    
+    public static void bubbleSortByAccountNumberDesc(LinkedList<String[]> arr) {
+        try {
+            int n = arr.size();
+            for (int i = 0; i < n - 1; i++) {
+                for (int j = 0; j < n - i - 1; j++) {
+                    long accountNumber1 = Long.parseLong(arr.get(j)[0]);
+                    long accountNumber2 = Long.parseLong(arr.get(j + 1)[0]);
 
-    public static void bubbleSortByName(LinkedList<String[]> arr) {
+                    if (accountNumber1 < accountNumber2) {
+                        String[] temp = arr.get(j);
+                        arr.set(j, arr.get(j + 1));
+                        arr.set(j + 1, temp);
+                    }
+                }
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+
+    public static void bubbleSortByNameAsc(LinkedList<String[]> arr) {
         int n = arr.size();
         for (int i = 0; i < n - 1; i++) {
             for (int j = 0; j < n - i - 1; j++) {
@@ -41,6 +61,22 @@ public class StructureData {
                 String name2 = arr.get(j + 1)[1];
 
                 if (name1.compareTo(name2) > 0) {
+                    String[] temp = arr.get(j);
+                    arr.set(j, arr.get(j + 1));
+                    arr.set(j + 1, temp);
+                }
+            }
+        }
+    }
+    
+    public static void bubbleSortByNameDesc(LinkedList<String[]> arr) {
+        int n = arr.size();
+        for (int i = 0; i < n - 1; i++) {
+            for (int j = 0; j < n - i - 1; j++) {
+                String name1 = arr.get(j)[1];
+                String name2 = arr.get(j + 1)[1];
+
+                if (name1.compareTo(name2) < 0) {
                     String[] temp = arr.get(j);
                     arr.set(j, arr.get(j + 1));
                     arr.set(j + 1, temp);
@@ -76,7 +112,7 @@ public class StructureData {
     }
 
     public static String[] binarySearchByAccountNumber(LinkedList<String[]> list, String target) {
-        bubbleSortByAccountNumber(list);
+        bubbleSortByAccountNumberAsc(list);
         
         int left = 0;
         int right = list.size() - 1;
@@ -102,7 +138,7 @@ public class StructureData {
     }
     
     public static String[] binarySearchByName(LinkedList<String[]> list, String target) {
-        bubbleSortByName(list);
+        bubbleSortByNameAsc(list);
         
         int left = 0;
         int right = list.size() - 1;

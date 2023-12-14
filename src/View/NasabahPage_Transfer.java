@@ -113,14 +113,13 @@ public class NasabahPage_Transfer extends javax.swing.JFrame {
             tf_nom.setEditable(false);
         } else {
             String namaLengkap = NC.getNamaLengkap(tf_destinationAccount.getText());
-            
             if (namaLengkap == null) {
                 JOptionPane.showMessageDialog(null, "Nomor Rekening tidak ditemukan");
                 tf_nom.setEditable(false);
                 tf_destinationAccount.requestFocus();
             } else {
                 tf_nom.setEditable(true);
-                int pilihan = JOptionPane.showConfirmDialog(null, "Apakah anda transfer ke atas nama\n" + namaLengkap, "Trasnfer", JOptionPane.YES_NO_OPTION);
+                int pilihan = JOptionPane.showConfirmDialog(null, "Apakah anda transfer ke atas nama\n" + namaLengkap, "Transfer", JOptionPane.YES_NO_OPTION);
                 if (pilihan == JOptionPane.YES_OPTION) {
                     tf_nom.setEditable(true);
                     tf_nom.requestFocus();

@@ -15,11 +15,12 @@ import model.TransactionModel;
  * @author HP
  */
 public class NasabahPage_Cardless extends javax.swing.JFrame {
+
     TransactionModel TM = new TransactionModel();
     TransactionController TC = new TransactionController();
     private String notif;
     NumberFormat formatRp = NumberFormat.getCurrencyInstance(new Locale("in", "ID"));
-    
+
     /**
      * Creates new form NasabahPage_Cardless
      */
@@ -33,7 +34,7 @@ public class NasabahPage_Cardless extends javax.swing.JFrame {
             LP.setVisible(true);
         }
     }
-    
+
     public void display() {
         pan_cashWithdrawal.setVisible(false);
         pan_cashDeposit.setVisible(false);
@@ -173,12 +174,13 @@ public class NasabahPage_Cardless extends javax.swing.JFrame {
         } else {
             try {
                 String nominal = cb_nom.getSelectedItem().toString().replace(".", "").replace(",00", "");
-                notif = TC.minusSaldo(TM.getNoRek(), nominal, "Tarik Tunai", "Berhasil");
-                TC.setSaldoNew(TM.getNoRek());
-                JOptionPane.showMessageDialog(null, notif, "Informasi", JOptionPane.INFORMATION_MESSAGE);
-                dispose();
-                NasabahPage_LandingPage LP = new NasabahPage_LandingPage();
-                LP.setVisible(true);
+                java.awt.EventQueue.invokeLater(new Runnable() {
+                    public void run() {
+                        dispose();
+                        NasabahPage_tarTun_kodePenarikan KP = new NasabahPage_tarTun_kodePenarikan(nominal);
+                        KP.setVisible(true);
+                    }
+                });
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, "Nasabah gagal tarik tunai", "Informasi", JOptionPane.INFORMATION_MESSAGE);
             }
@@ -203,12 +205,13 @@ public class NasabahPage_Cardless extends javax.swing.JFrame {
         } else {
             try {
                 String nominal = cb_nom1.getSelectedItem().toString().replace(".", "").replace(",00", "");
-                notif = TC.plusSaldo(TM.getNoRek(), nominal, "Setor Tunai", "Berhasil");
-                TC.setSaldoNew(TM.getNoRek());
-                JOptionPane.showMessageDialog(null, notif, "Informasi", JOptionPane.INFORMATION_MESSAGE);
-                dispose();
-                NasabahPage_LandingPage LP = new NasabahPage_LandingPage();
-                LP.setVisible(true);
+                java.awt.EventQueue.invokeLater(new Runnable() {
+                    public void run() {
+                        dispose();
+                        NasabahPage_setTun_kodePenarikan KP = new NasabahPage_setTun_kodePenarikan(nominal);
+                        KP.setVisible(true);
+                    }
+                });
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, "Nasabah gagal setor tunai", "Informasi", JOptionPane.INFORMATION_MESSAGE);
             }

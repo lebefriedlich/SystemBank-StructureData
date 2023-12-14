@@ -150,6 +150,7 @@ public class AdminPage extends javax.swing.JFrame {
         bt_transfer = new javax.swing.JButton();
         tf_pencarian = new javax.swing.JTextField();
         cb_sorting = new javax.swing.JComboBox<>();
+        cb_sorting1 = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         tab_aktifitas = new javax.swing.JTable();
         lbl_exit = new javax.swing.JLabel();
@@ -303,12 +304,15 @@ public class AdminPage extends javax.swing.JFrame {
         getContentPane().add(tf_pencarian, new org.netbeans.lib.awtextra.AbsoluteConstraints(1130, 80, 190, -1));
 
         cb_sorting.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Default", "Nomor Rekening", "Nama" }));
-        cb_sorting.addActionListener(new java.awt.event.ActionListener() {
+        getContentPane().add(cb_sorting, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 80, -1, -1));
+
+        cb_sorting1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " ", "Asc", "Desc" }));
+        cb_sorting1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cb_sortingActionPerformed(evt);
+                cb_sorting1ActionPerformed(evt);
             }
         });
-        getContentPane().add(cb_sorting, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 80, -1, -1));
+        getContentPane().add(cb_sorting1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1010, 80, 60, -1));
 
         tab_aktifitas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -550,33 +554,6 @@ public class AdminPage extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_tf_pencarianKeyPressed
 
-    private void cb_sortingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cb_sortingActionPerformed
-        String selectedOption = (String) cb_sorting.getSelectedItem();
-        if ("Default".equals(selectedOption)) {
-            tampil_datauser();
-        } else if ("Nomor Rekening".equals(selectedOption)) {
-            SD.bubbleSortByAccountNumber(dataNasabah);
-            tabMode = (DefaultTableModel) tab_data.getModel();
-            tab_data.setModel(tabMode);
-            tab_data.setRowHeight(35);
-            tabMode.setRowCount(0);
-            dataNasabah = AM.getDataNasabah();
-            for (String[] rowData : dataNasabah) {
-                tabMode.addRow(rowData);
-            }
-        } else if ("Nama".equals(selectedOption)) {
-            SD.bubbleSortByName(dataNasabah);
-            tabMode = (DefaultTableModel) tab_data.getModel();
-            tab_data.setModel(tabMode);
-            tab_data.setRowHeight(35);
-            tabMode.setRowCount(0);
-            dataNasabah = AM.getDataNasabah();
-            for (String[] rowData : dataNasabah) {
-                tabMode.addRow(rowData);
-            }
-        }
-    }//GEN-LAST:event_cb_sortingActionPerformed
-
     private void lbl_exitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_exitMouseClicked
         int pilihan = JOptionPane.showConfirmDialog(null, "Apakah anda ingin keluar?", "Keluar", JOptionPane.YES_NO_OPTION);
         if (pilihan == JOptionPane.YES_OPTION) {
@@ -605,6 +582,74 @@ public class AdminPage extends javax.swing.JFrame {
                 }
             }
     }//GEN-LAST:event_bt_deleteActionPerformed
+
+    private void cb_sorting1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cb_sorting1ActionPerformed
+        String selectedOption = (String) cb_sorting.getSelectedItem();
+        String selectedOptionSort = (String) cb_sorting1.getSelectedItem();
+        if ("Default".equals(selectedOption) && " ".equals(selectedOptionSort)) {
+            tampil_datauser();
+        } else if ("Nomor Rekening".equals(selectedOption) && " ".equals(selectedOptionSort)) {
+            SD.bubbleSortByAccountNumberAsc(dataNasabah);
+            tabMode = (DefaultTableModel) tab_data.getModel();
+            tab_data.setModel(tabMode);
+            tab_data.setRowHeight(35);
+            tabMode.setRowCount(0);
+            dataNasabah = AM.getDataNasabah();
+            for (String[] rowData : dataNasabah) {
+                tabMode.addRow(rowData);
+            }
+        } else if ("Nomor Rekening".equals(selectedOption) && "Asc".equals(selectedOptionSort)) {
+            SD.bubbleSortByAccountNumberAsc(dataNasabah);
+            tabMode = (DefaultTableModel) tab_data.getModel();
+            tab_data.setModel(tabMode);
+            tab_data.setRowHeight(35);
+            tabMode.setRowCount(0);
+            dataNasabah = AM.getDataNasabah();
+            for (String[] rowData : dataNasabah) {
+                tabMode.addRow(rowData);
+            }
+        } else if ("Nomor Rekening".equals(selectedOption) && "Desc".equals(selectedOptionSort)) {
+            SD.bubbleSortByAccountNumberDesc(dataNasabah);
+            tabMode = (DefaultTableModel) tab_data.getModel();
+            tab_data.setModel(tabMode);
+            tab_data.setRowHeight(35);
+            tabMode.setRowCount(0);
+            dataNasabah = AM.getDataNasabah();
+            for (String[] rowData : dataNasabah) {
+                tabMode.addRow(rowData);
+            }
+        } else if ("Nama".equals(selectedOption) && " ".equals(selectedOptionSort)) {
+            SD.bubbleSortByNameAsc(dataNasabah);
+            tabMode = (DefaultTableModel) tab_data.getModel();
+            tab_data.setModel(tabMode);
+            tab_data.setRowHeight(35);
+            tabMode.setRowCount(0);
+            dataNasabah = AM.getDataNasabah();
+            for (String[] rowData : dataNasabah) {
+                tabMode.addRow(rowData);
+            }
+        } else if ("Nama".equals(selectedOption) && "Asc".equals(selectedOptionSort)) {
+            SD.bubbleSortByNameAsc(dataNasabah);
+            tabMode = (DefaultTableModel) tab_data.getModel();
+            tab_data.setModel(tabMode);
+            tab_data.setRowHeight(35);
+            tabMode.setRowCount(0);
+            dataNasabah = AM.getDataNasabah();
+            for (String[] rowData : dataNasabah) {
+                tabMode.addRow(rowData);
+            }
+        } else if ("Nama".equals(selectedOption) && "Desc".equals(selectedOptionSort)) {
+            SD.bubbleSortByNameDesc(dataNasabah);
+            tabMode = (DefaultTableModel) tab_data.getModel();
+            tab_data.setModel(tabMode);
+            tab_data.setRowHeight(35);
+            tabMode.setRowCount(0);
+            dataNasabah = AM.getDataNasabah();
+            for (String[] rowData : dataNasabah) {
+                tabMode.addRow(rowData);
+            }
+        }
+    }//GEN-LAST:event_cb_sorting1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -653,6 +698,7 @@ public class AdminPage extends javax.swing.JFrame {
     private javax.swing.JButton bt_tampilAktifitas;
     private javax.swing.JButton bt_transfer;
     private javax.swing.JComboBox<String> cb_sorting;
+    private javax.swing.JComboBox<String> cb_sorting1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lbl_background;

@@ -36,8 +36,10 @@ public class TransactionController {
             notif = "Maaf, Username belum diisi!";
         } else if (password.isEmpty()) {
             notif = "Maaf, Password belum diisi!";
-        } else if (matcherUsername.matches() && matcherPassword.matches() && flag) {
+        } else if (matcherUsername.matches() && matcherPassword.matches() && flag && "Active".equals(TM.getStatusLogin())) {
             notif = null;
+        } else if("Non Active".equals(TM.getStatusLogin())){
+            notif = "Akun Anda Diblokir";
         } else {
             notif = "Username atau password yang anda \nmasukkan salah. Silahkan coba kembali";
         }

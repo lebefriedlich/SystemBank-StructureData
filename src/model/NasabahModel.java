@@ -11,7 +11,14 @@ import java.util.LinkedList;
  * @author HP
  */
 public class NasabahModel {
-   private static String namaLengkap;
+   private static String namaLengkap, namaBank;
+    public static String getNamaBank() {
+        return namaBank;
+    }
+
+    public static void setNamaBank(String namaBank) {
+        NasabahModel.namaBank = namaBank;
+    }
     private static LinkedList<String[]> dataTransaction = new LinkedList<>();
 
     public static LinkedList<String[]> getDataTransaction() {

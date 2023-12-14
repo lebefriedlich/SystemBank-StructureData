@@ -41,12 +41,13 @@ public class NasabahRepository {
             rs = psmt.executeQuery();
             if (rs.next()) {
                 String idNasabah = rs.getString("ID_nasabah");
-                query = "SELECT nama_lengkap from user_bank WHERE ID_nasabah = ? AND role_id = 2";
+                query = "SELECT nama_lengkap, nama_bank from user_bank WHERE ID_nasabah = ? AND role_id = 2";
                 psmt = connection.prepareStatement(query);
                 psmt.setString(1, idNasabah);
                 rs = psmt.executeQuery();
                 if (rs.next()) {
                     NM.setNamaLengkap(rs.getString("nama_lengkap"));
+                    NM.setNamaBank(rs.getString("nama_bank"));
                     return true;
                 } else {
                     return false;
