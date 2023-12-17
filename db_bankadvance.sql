@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 30, 2023 at 03:22 PM
+-- Generation Time: Dec 14, 2023 at 02:21 PM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -40,7 +40,7 @@ CREATE TABLE `rekening` (
 
 INSERT INTO `rekening` (`no_rekening`, `ID_nasabah`, `Saldo`, `Tanggal_Daftar`) VALUES
 (19210204000001, 1, 0, '2023-11-12 08:31:15'),
-(19210204000002, 2, 90000000, '2023-11-30 14:12:16'),
+(19210204000002, 2, 90000000, '2023-12-14 10:43:14'),
 (19210204000003, 3, 0, '2023-11-12 08:09:18'),
 (19210204000005, 5, 70000000, '2023-11-30 13:20:10'),
 (19210204000006, 6, 74500000, '2023-11-30 13:21:27'),
@@ -51,7 +51,8 @@ INSERT INTO `rekening` (`no_rekening`, `ID_nasabah`, `Saldo`, `Tanggal_Daftar`) 
 (19210204000011, 11, 50000000, '2023-11-15 01:56:42'),
 (19210204000012, 12, 60000000, '2023-11-15 01:59:33'),
 (19210204000013, 13, 80000000, '2023-11-15 02:18:33'),
-(19210204000014, 14, 50000000, '2023-11-30 14:19:58');
+(19210204000014, 14, 50000000, '2023-11-30 14:19:58'),
+(19210204000015, 15, 100000000, '2023-12-13 04:13:17');
 
 -- --------------------------------------------------------
 
@@ -107,7 +108,14 @@ INSERT INTO `setor_tunai` (`ID_transaksi`, `no_rekening`, `Tanggal_Transaksi`, `
 (15, 19210204000005, '2023-11-30 13:20:10', 'Setor Tunai', '1000000', 'Berhasil'),
 (18, 19210204000002, '2023-11-30 14:12:16', 'Setor Tunai', '1000000', 'Berhasil'),
 (19, 19210204000014, '2023-11-30 14:19:14', 'Setor Tunai', '100000.0', 'Berhasil'),
-(20, 19210204000014, '2023-11-30 14:19:58', 'Setor Tunai', '49900000', 'Berhasil');
+(20, 19210204000014, '2023-11-30 14:19:58', 'Setor Tunai', '49900000', 'Berhasil'),
+(21, 19210204000015, '2023-12-13 04:08:13', 'Setor Tunai', '100000000', 'Berhasil'),
+(22, 19210204000015, '2023-12-13 04:13:17', 'Setor Tunai', '100000', 'Berhasil'),
+(23, 19210204000002, '2023-12-14 07:42:16', 'Setor Tunai', '1000000', 'Berhasil'),
+(24, 19210204000002, '2023-12-14 07:43:50', 'Setor Tunai', '100000', 'Berhasil'),
+(25, 19210204000002, '2023-12-14 07:44:09', 'Setor Tunai', '500000', 'Berhasil'),
+(26, 19210204000002, '2023-12-14 07:44:57', 'Setor Tunai', '1000000', 'Berhasil'),
+(27, 19210204000002, '2023-12-14 10:43:14', 'Setor Tunai', '1000000', 'Berhasil');
 
 -- --------------------------------------------------------
 
@@ -136,7 +144,13 @@ INSERT INTO `tarik_tunai` (`ID_transaksi`, `no_rekening`, `Tanggal_Transaksi`, `
 (6, 19210204000002, '2023-11-15 08:06:34', 'Tarik Tunai', '5000000', 'Berhasil'),
 (7, 19210204000002, '2023-11-29 03:23:17', 'Tarik Tunai', '1000000', 'Berhasil'),
 (8, 19210204000005, '2023-11-30 13:20:02', 'Tarik Tunai', '500000', 'Berhasil'),
-(9, 19210204000002, '2023-11-30 14:11:16', 'Tarik Tunai', '1000000', 'Berhasil');
+(9, 19210204000002, '2023-11-30 14:11:16', 'Tarik Tunai', '1000000', 'Berhasil'),
+(10, 19210204000002, '2023-12-13 07:58:11', 'Tarik Tunai', '100000', 'Berhasil'),
+(11, 19210204000002, '2023-12-14 07:30:25', 'Tarik Tunai', '1000000', 'Berhasil'),
+(12, 19210204000002, '2023-12-14 07:30:58', 'Tarik Tunai', '1000000', 'Berhasil'),
+(13, 19210204000002, '2023-12-14 07:44:30', 'Tarik Tunai', '500000', 'Berhasil'),
+(14, 19210204000002, '2023-12-14 07:44:42', 'Tarik Tunai', '100000', 'Berhasil'),
+(15, 19210204000002, '2023-12-14 07:52:11', 'Tarik Tunai', '1000000', 'Berhasil');
 
 -- --------------------------------------------------------
 
@@ -173,7 +187,9 @@ INSERT INTO `transfer` (`ID_transaksi`, `no_rekening`, `Tanggal_Transaksi`, `Jen
 (15, 19210204000010, '2023-11-30 13:13:31', 'Transfer Keluar', '19000000', 'ke 19210204000002'),
 (16, 19210204000002, '2023-11-30 13:13:31', 'Transfer Masuk', '19000000', 'dari 19210204000010'),
 (17, 19210204000006, '2023-11-30 13:21:27', 'Transfer Keluar', '21500000', 'ke 19210204000002'),
-(18, 19210204000002, '2023-11-30 13:21:27', 'Transfer Masuk', '21500000', 'dari 19210204000006');
+(18, 19210204000002, '2023-11-30 13:21:27', 'Transfer Masuk', '21500000', 'dari 19210204000006'),
+(21, 19210204000015, '2023-12-13 04:10:43', 'Transfer Keluar', '100000', 'ke 19210204000002'),
+(22, 19210204000002, '2023-12-13 04:10:43', 'Transfer Masuk', '100000', 'dari 19210204000015');
 
 -- --------------------------------------------------------
 
@@ -188,6 +204,7 @@ CREATE TABLE `user_bank` (
   `password` varchar(6) NOT NULL,
   `no_hp` varchar(12) NOT NULL,
   `email` varchar(30) NOT NULL,
+  `nama_bank` varchar(30) NOT NULL,
   `status` varchar(11) NOT NULL,
   `role_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -196,20 +213,21 @@ CREATE TABLE `user_bank` (
 -- Dumping data for table `user_bank`
 --
 
-INSERT INTO `user_bank` (`ID_nasabah`, `nama_lengkap`, `username`, `password`, `no_hp`, `email`, `status`, `role_id`) VALUES
-(1, 'Maulana Haekal Noval Akbar', 'hae192', '190204', '081359654481', 'noval.akbar.906@gmail.com', 'Active', 1),
-(2, 'Maulana Haekal Noval Akbar', 'val192', '190204', '081359654482', 'maulanahaekal906@gmail.com', 'Active', 2),
-(3, 'Wafiy Anwarul Hikam', 'fiy211', '210104', '081111111111', 'wafiyanwarul@gmail.com', 'Active', 1),
-(5, 'Jane Doe', 'u02a02', '234567', '081356451232', 'janedoe64@gmail.com', 'Active', 2),
-(6, 'Alice Smith', 'u03a03', '345678', '085278984565', 'alicesmith@gmail.com', 'Active', 2),
-(7, 'Bob Johnson', 'u04a04', '456789', '085932124565', 'bobjohnson@gmail.com', 'Active', 2),
-(8, 'Eva Brown', 'u05a05', '567890', '082196368525', 'evabrown@gmail.com', 'Active', 2),
-(9, 'Charlie White', 'u06a06', '678901', '081374148525', 'charliewhite@gmail.com', 'Active', 2),
-(10, 'Almira Tasya Nabila', 'sya212', '210204', '081355556666', 'tasyuu78@gmail.com', 'Active', 2),
-(11, 'Wafiy Anwarul Hikam', 'waf555', '555666', '085244446666', 'wafiy@gmail.com', 'Active', 2),
-(12, 'Alsy Amalia Jasmine Muin', 'als789', '789456', '085744449999', 'alsy@gmail.com', 'Active', 2),
-(13, 'Rifdan Acmal Faza', 'mil987', '987456', '085978945612', 'kom_il99@gmail.com', 'Active', 2),
-(14, 'Rifdan Acmal Faza', 'mil945', '170845', '081311224455', 'komil945@gmail.com', 'Active', 2);
+INSERT INTO `user_bank` (`ID_nasabah`, `nama_lengkap`, `username`, `password`, `no_hp`, `email`, `nama_bank`, `status`, `role_id`) VALUES
+(1, 'Maulana Haekal Noval Akbar', 'hae192', '190204', '081359654481', 'noval.akbar.906@gmail.com', 'Bank Rud', 'Active', 1),
+(2, 'Maulana Haekal Noval Akbar', 'val192', '190204', '081359654482', 'maulanahaekal906@gmail.com', 'Bank Kang', 'Active', 2),
+(3, 'Wafiy Anwarul Hikam', 'fiy211', '210104', '081111111111', 'wafiyanwarul@gmail.com', 'Bank Rud', 'Active', 1),
+(5, 'Jane Doe', 'u02a02', '234567', '081356451232', 'janedoe64@gmail.com', 'Bank Ku', 'Active', 2),
+(6, 'Alice Smith', 'u03a03', '345678', '085278984565', 'alicesmith@gmail.com', 'Bank Rud', 'Active', 2),
+(7, 'Bob Johnson', 'u04a04', '456789', '085932124565', 'bobjohnson@gmail.com', 'Bank Rud', 'Active', 2),
+(8, 'Eva Brown', 'u05a05', '567890', '082196368525', 'evabrown@gmail.com', 'Bank Ku', 'Active', 2),
+(9, 'Charlie White', 'u06a06', '678901', '081374148525', 'charliewhite@gmail.com', 'Bank Rud', 'Active', 2),
+(10, 'Almira Tasya Nabila', 'sya212', '210204', '081355556666', 'tasyuu78@gmail.com', 'Bank Kang', 'Active', 2),
+(11, 'Wafiy Anwarul Hikam', 'waf555', '555666', '085244446666', 'wafiy@gmail.com', 'Bank Ku', 'Active', 2),
+(12, 'Alsy Amalia Jasmine Muin', 'als789', '789456', '085744449999', 'alsy@gmail.com', 'Bank Kang', 'Active', 2),
+(13, 'Rifdan Acmal Faza', 'mil987', '987456', '085978945612', 'kom_il99@gmail.com', 'Bank Rud', 'Active', 2),
+(14, 'Rifdan Acmal Faza', 'mil945', '170845', '081311224455', 'komil945@gmail.com', 'Bank Ku', 'Active', 2),
+(15, 'Ahmad Fadli', 'fad386', '386683', '081385259636', 'fadli@gmail.com', 'Bank Kang', 'Active', 2);
 
 --
 -- Indexes for dumped tables
@@ -265,7 +283,7 @@ ALTER TABLE `user_bank`
 -- AUTO_INCREMENT for table `rekening`
 --
 ALTER TABLE `rekening`
-  MODIFY `no_rekening` bigint(14) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19210204000015;
+  MODIFY `no_rekening` bigint(14) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19210204000016;
 
 --
 -- AUTO_INCREMENT for table `roles`
@@ -277,25 +295,25 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT for table `setor_tunai`
 --
 ALTER TABLE `setor_tunai`
-  MODIFY `ID_transaksi` int(13) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `ID_transaksi` int(13) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `tarik_tunai`
 --
 ALTER TABLE `tarik_tunai`
-  MODIFY `ID_transaksi` int(13) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `ID_transaksi` int(13) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `transfer`
 --
 ALTER TABLE `transfer`
-  MODIFY `ID_transaksi` int(13) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `ID_transaksi` int(13) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `user_bank`
 --
 ALTER TABLE `user_bank`
-  MODIFY `ID_nasabah` int(13) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `ID_nasabah` int(13) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- Constraints for dumped tables
