@@ -33,7 +33,7 @@ public class NasabahRepository {
         }
     }
 
-    public boolean getNamaLengkap(String noRek) {
+    public boolean getDataNasabah(String noRek) {
         try {
             query = "SELECT ID_nasabah from rekening WHERE no_rekening = ?";
             psmt = connection.prepareStatement(query);

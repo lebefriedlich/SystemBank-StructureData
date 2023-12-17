@@ -112,7 +112,7 @@ public class NasabahPage_Transfer extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Maaf Tidak Bisa Transfer ke Rekening Sendiri");
             tf_nom.setEditable(false);
         } else {
-            String namaLengkap = NC.getNamaLengkap(tf_destinationAccount.getText());
+            String namaLengkap = NC.getDataNasabah(tf_destinationAccount.getText());
             if (namaLengkap == null) {
                 JOptionPane.showMessageDialog(null, "Nomor Rekening tidak ditemukan");
                 tf_nom.setEditable(false);

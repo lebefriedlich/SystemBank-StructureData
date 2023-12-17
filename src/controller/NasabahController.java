@@ -20,11 +20,11 @@ public class NasabahController {
     final String NOREK_PATTERN = "^\\d{14}$";
     final Pattern patternNoRek = Pattern.compile(NOREK_PATTERN);
     
-    public String getNamaLengkap(String noRek){
+    public String getDataNasabah(String noRek){
         Matcher matcherNoRek = patternNoRek.matcher(noRek);
         if (!matcherNoRek.matches()) {
             notif = "Nomor Rekening harus memiliki 14 angka";
-        } else if (NS.getNamaLengkap(noRek)){
+        } else if (NS.getDataNasabah(noRek)){
             notif = NM.getNamaLengkap() + " dari " + NM.getNamaBank();
         } else {
             notif = null;

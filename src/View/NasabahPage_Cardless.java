@@ -57,13 +57,13 @@ public class NasabahPage_Cardless extends javax.swing.JFrame {
         lab_noRek = new javax.swing.JLabel();
         lab_saldo = new javax.swing.JLabel();
         cb_nom = new javax.swing.JComboBox<>();
-        btn_cashWithdrawal = new javax.swing.JButton();
+        bt_cashWithdrawal = new javax.swing.JButton();
         lab_bgCashWithdrawal = new javax.swing.JLabel();
         pan_cashDeposit = new javax.swing.JPanel();
         lab_noRek1 = new javax.swing.JLabel();
         lab_saldo1 = new javax.swing.JLabel();
         cb_nom1 = new javax.swing.JComboBox<>();
-        btn_cashDeposit = new javax.swing.JButton();
+        bt_cashDeposit = new javax.swing.JButton();
         lab_bgCashDeposit = new javax.swing.JLabel();
         lbl_cashWithdrawal = new javax.swing.JLabel();
         lbl_cashDeposit = new javax.swing.JLabel();
@@ -90,16 +90,16 @@ public class NasabahPage_Cardless extends javax.swing.JFrame {
         cb_nom.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-", "50.000,00", "100.000,00", "150.000,00", "200.000,00", "250.000,00", "500.000,00", "1.000.000,00", "1.500.000,00", "2.000.000,00", "2.500.000,00" }));
         pan_cashWithdrawal.add(cb_nom, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 87, -1, -1));
 
-        btn_cashWithdrawal.setBackground(new java.awt.Color(72, 70, 109));
-        btn_cashWithdrawal.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
-        btn_cashWithdrawal.setForeground(new java.awt.Color(171, 237, 216));
-        btn_cashWithdrawal.setText("CASH WITHDRAWAL");
-        btn_cashWithdrawal.addActionListener(new java.awt.event.ActionListener() {
+        bt_cashWithdrawal.setBackground(new java.awt.Color(72, 70, 109));
+        bt_cashWithdrawal.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
+        bt_cashWithdrawal.setForeground(new java.awt.Color(171, 237, 216));
+        bt_cashWithdrawal.setText("CASH WITHDRAWAL");
+        bt_cashWithdrawal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_cashWithdrawalActionPerformed(evt);
+                bt_cashWithdrawalActionPerformed(evt);
             }
         });
-        pan_cashWithdrawal.add(btn_cashWithdrawal, new org.netbeans.lib.awtextra.AbsoluteConstraints(105, 130, 150, 27));
+        pan_cashWithdrawal.add(bt_cashWithdrawal, new org.netbeans.lib.awtextra.AbsoluteConstraints(105, 130, 150, 27));
 
         lab_bgCashWithdrawal.setIcon(new javax.swing.ImageIcon("C:\\Users\\HP\\OneDrive\\Documents\\SystemBank-StructureData\\images\\background\\Cash Withdrawal.png")); // NOI18N
         pan_cashWithdrawal.add(lab_bgCashWithdrawal, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -123,16 +123,16 @@ public class NasabahPage_Cardless extends javax.swing.JFrame {
         cb_nom1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-", "50.000,00", "100.000,00", "150.000,00", "200.000,00", "250.000,00", "500.000,00", "1.000.000,00", "1.500.000,00", "2.000.000,00", "2.500.000,00" }));
         pan_cashDeposit.add(cb_nom1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 87, -1, -1));
 
-        btn_cashDeposit.setBackground(new java.awt.Color(72, 70, 109));
-        btn_cashDeposit.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
-        btn_cashDeposit.setForeground(new java.awt.Color(171, 237, 216));
-        btn_cashDeposit.setText("CASH DEPOSIT");
-        btn_cashDeposit.addActionListener(new java.awt.event.ActionListener() {
+        bt_cashDeposit.setBackground(new java.awt.Color(72, 70, 109));
+        bt_cashDeposit.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
+        bt_cashDeposit.setForeground(new java.awt.Color(171, 237, 216));
+        bt_cashDeposit.setText("CASH DEPOSIT");
+        bt_cashDeposit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_cashDepositActionPerformed(evt);
+                bt_cashDepositActionPerformed(evt);
             }
         });
-        pan_cashDeposit.add(btn_cashDeposit, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 130, 120, 27));
+        pan_cashDeposit.add(bt_cashDeposit, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 130, 120, 27));
 
         lab_bgCashDeposit.setIcon(new javax.swing.ImageIcon("C:\\Users\\HP\\OneDrive\\Documents\\SystemBank-StructureData\\images\\background\\Cash Deposit.png")); // NOI18N
         pan_cashDeposit.add(lab_bgCashDeposit, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -167,7 +167,7 @@ public class NasabahPage_Cardless extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btn_cashWithdrawalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cashWithdrawalActionPerformed
+    private void bt_cashWithdrawalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_cashWithdrawalActionPerformed
         if (cb_nom.getSelectedItem().toString().equals("-")) {
             JOptionPane.showMessageDialog(null, "Maaf, Nominal belum diisi !");
             cb_nom.requestFocus();
@@ -177,7 +177,7 @@ public class NasabahPage_Cardless extends javax.swing.JFrame {
                 java.awt.EventQueue.invokeLater(new Runnable() {
                     public void run() {
                         dispose();
-                        NasabahPage_tarTun_kodePenarikan KP = new NasabahPage_tarTun_kodePenarikan(nominal);
+                        NasabahPage_kodePenarikan KP = new NasabahPage_kodePenarikan(nominal, "tartun");
                         KP.setVisible(true);
                     }
                 });
@@ -185,7 +185,7 @@ public class NasabahPage_Cardless extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Nasabah gagal tarik tunai", "Informasi", JOptionPane.INFORMATION_MESSAGE);
             }
         }
-    }//GEN-LAST:event_btn_cashWithdrawalActionPerformed
+    }//GEN-LAST:event_bt_cashWithdrawalActionPerformed
 
     private void lbl_cashWithdrawalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_cashWithdrawalMouseClicked
         pan_cashWithdrawal.setVisible(true);
@@ -198,7 +198,7 @@ public class NasabahPage_Cardless extends javax.swing.JFrame {
         LP.setVisible(true);
     }//GEN-LAST:event_lbl_backMouseClicked
 
-    private void btn_cashDepositActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cashDepositActionPerformed
+    private void bt_cashDepositActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_cashDepositActionPerformed
         if (cb_nom1.getSelectedItem().toString().equals("-")) {
             JOptionPane.showMessageDialog(null, "Maaf, Nominal belum diisi !");
             cb_nom1.requestFocus();
@@ -208,7 +208,7 @@ public class NasabahPage_Cardless extends javax.swing.JFrame {
                 java.awt.EventQueue.invokeLater(new Runnable() {
                     public void run() {
                         dispose();
-                        NasabahPage_setTun_kodePenarikan KP = new NasabahPage_setTun_kodePenarikan(nominal);
+                        NasabahPage_kodePenarikan KP = new NasabahPage_kodePenarikan(nominal, "settun");
                         KP.setVisible(true);
                     }
                 });
@@ -216,7 +216,7 @@ public class NasabahPage_Cardless extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Nasabah gagal setor tunai", "Informasi", JOptionPane.INFORMATION_MESSAGE);
             }
         }
-    }//GEN-LAST:event_btn_cashDepositActionPerformed
+    }//GEN-LAST:event_bt_cashDepositActionPerformed
 
     private void lbl_cashDepositMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_cashDepositMouseClicked
         pan_cashWithdrawal.setVisible(false);
@@ -259,8 +259,8 @@ public class NasabahPage_Cardless extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btn_cashDeposit;
-    private javax.swing.JButton btn_cashWithdrawal;
+    private javax.swing.JButton bt_cashDeposit;
+    private javax.swing.JButton bt_cashWithdrawal;
     private javax.swing.JComboBox<String> cb_nom;
     private javax.swing.JComboBox<String> cb_nom1;
     private javax.swing.JLabel lab_bgCashDeposit;

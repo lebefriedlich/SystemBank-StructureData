@@ -13,9 +13,9 @@ import repository.NasabahRepository;
 public class NasabahService {
     NasabahRepository NR = new NasabahRepository();
     
-    public boolean getNamaLengkap(String noRek){
+    public boolean getDataNasabah(String noRek){
         try {
-            NR.getNamaLengkap(noRek);
+            NR.getDataNasabah(noRek);
             return true;
         } catch (Exception e) {
             System.out.println(e.toString());

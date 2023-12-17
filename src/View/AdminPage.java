@@ -6,6 +6,7 @@ package view;
 
 import Util.StructureData;
 import controller.AdminController;
+import controller.NasabahController;
 import controller.TransactionController;
 import java.awt.event.KeyEvent;
 import java.text.NumberFormat;
@@ -26,6 +27,7 @@ public class AdminPage extends javax.swing.JFrame {
     TransactionController TC = new TransactionController();
     AdminModel AM = new AdminModel();
     AdminController AC = new AdminController();
+    NasabahController NC = new NasabahController();
     StructureData SD = new StructureData();
 
     private DefaultTableModel tabMode;
@@ -112,7 +114,7 @@ public class AdminPage extends javax.swing.JFrame {
         tf_nominal.setText("");
         tf_status.setText("");
         tf_rek1.setText("");
-        tf_rekTuj.setText("");
+        tf_destinationAccount.setText("");
         tf_nom.setText("");
     }
 
@@ -145,7 +147,7 @@ public class AdminPage extends javax.swing.JFrame {
         bt_cashWithdrawal = new javax.swing.JButton();
         bt_cashDeposit = new javax.swing.JButton();
         tf_rek1 = new javax.swing.JTextField();
-        tf_rekTuj = new javax.swing.JTextField();
+        tf_destinationAccount = new javax.swing.JTextField();
         tf_nom = new javax.swing.JTextField();
         bt_transfer = new javax.swing.JButton();
         tf_pencarian = new javax.swing.JTextField();
@@ -277,12 +279,12 @@ public class AdminPage extends javax.swing.JFrame {
         getContentPane().add(bt_cashDeposit, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 470, 110, -1));
         getContentPane().add(tf_rek1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 540, 180, 23));
 
-        tf_rekTuj.addActionListener(new java.awt.event.ActionListener() {
+        tf_destinationAccount.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tf_rekTujActionPerformed(evt);
+                tf_destinationAccountActionPerformed(evt);
             }
         });
-        getContentPane().add(tf_rekTuj, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 570, 180, 23));
+        getContentPane().add(tf_destinationAccount, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 570, 180, 23));
         getContentPane().add(tf_nom, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 600, 180, 23));
 
         bt_transfer.setBackground(new java.awt.Color(171, 237, 216));
@@ -465,22 +467,16 @@ public class AdminPage extends javax.swing.JFrame {
         reset();
     }//GEN-LAST:event_bt_cashDepositActionPerformed
 
-    private void tf_rekTujActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_rekTujActionPerformed
-        if (tf_rekTuj.getText().trim().equals(tf_rek1.getText())) {
+    private void tf_destinationAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_destinationAccountActionPerformed
+        if (tf_destinationAccount.getText().trim().equals(tf_rek1.getText())) {
             JOptionPane.showMessageDialog(null, "Maaf Tidak Bisa Transfer ke Rekening Sendiri");
             tf_nom.setEditable(false);
         } else {
-            String namaLengkap = null;
-            for (String[] rowData : dataNasabah) {
-                if (rowData[0].equals(tf_rekTuj.getText())) {
-                    namaLengkap = rowData[1];
-                    break;
-                }
-            }
+            String namaLengkap = NC.getDataNasabah(tf_destinationAccount.getText());
             if (namaLengkap == null) {
-                JOptionPane.showMessageDialog(null, "Data Tidak Ditemukan");
+                JOptionPane.showMessageDialog(null, "Nomor Rekening tidak ditemukan");
                 tf_nom.setEditable(false);
-                tf_rekTuj.requestFocus();
+                tf_destinationAccount.requestFocus();
             } else {
                 tf_nom.setEditable(true);
                 int pilihan = JOptionPane.showConfirmDialog(null, "Apakah anda transfer ke atas nama\n" + namaLengkap, "Transfer", JOptionPane.YES_NO_OPTION);
@@ -488,14 +484,16 @@ public class AdminPage extends javax.swing.JFrame {
                     tf_nom.setEditable(true);
                     tf_nom.requestFocus();
                 } else {
-                    tf_rekTuj.setText("");
+                    tf_destinationAccount.setText("");
+                    tf_nom.setEditable(false);
                 }
             }
+
         }
-    }//GEN-LAST:event_tf_rekTujActionPerformed
+    }//GEN-LAST:event_tf_destinationAccountActionPerformed
 
     private void bt_transferActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_transferActionPerformed
-        if (tf_rek1.getText().isEmpty() && tf_rekTuj.getText().isEmpty()) {
+        if (tf_rek1.getText().isEmpty() && tf_destinationAccount.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Data belum diisi", "Informasi", JOptionPane.INFORMATION_MESSAGE);
             return;
         }
@@ -508,8 +506,8 @@ public class AdminPage extends javax.swing.JFrame {
             }
         }
         if (Integer.parseInt(saldo) > Integer.parseInt(nom)) {
-            notif = TC.minusSaldo(tf_rek1.getText(), nom, "Transfer Keluar", ("ke " + tf_rekTuj.getText())).replace("Keluar", "");
-            notif1 = TC.plusSaldo(tf_rekTuj.getText(), nom, "Transfer Masuk", "dari " + tf_rek1.getText());
+            notif = TC.minusSaldo(tf_rek1.getText(), nom, "Transfer Keluar", ("ke " + tf_destinationAccount.getText())).replace("Keluar", "");
+            notif1 = TC.plusSaldo(tf_destinationAccount.getText(), nom, "Transfer Masuk", "dari " + tf_rek1.getText());
             JOptionPane.showMessageDialog(null, notif, "Informasi", JOptionPane.INFORMATION_MESSAGE);
             reset();
             tampil_datauser();
@@ -705,6 +703,7 @@ public class AdminPage extends javax.swing.JFrame {
     private javax.swing.JLabel lbl_exit;
     private javax.swing.JTable tab_aktifitas;
     private javax.swing.JTable tab_data;
+    private javax.swing.JTextField tf_destinationAccount;
     private javax.swing.JTextField tf_email;
     private javax.swing.JTextField tf_namaLengkap;
     private javax.swing.JTextField tf_noRek;
@@ -714,7 +713,6 @@ public class AdminPage extends javax.swing.JFrame {
     private javax.swing.JTextField tf_password;
     private javax.swing.JTextField tf_pencarian;
     private javax.swing.JTextField tf_rek1;
-    private javax.swing.JTextField tf_rekTuj;
     private javax.swing.JTextField tf_saldo;
     private javax.swing.JTextField tf_status;
     private javax.swing.JTextField tf_username;
